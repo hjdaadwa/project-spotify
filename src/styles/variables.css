@@ -1,0 +1,13 @@
+html {
+    --bg-header: #000000;
+    --bg-panel: #1d1d1d;
+    --bg-main: #121212;
+    --bg--progress-bar: #535353;
+
+    --font-green: #1DB954;
+    --font-white: #FFFFFF;
+    --font-gray: #b3b3b3;
+    --font-grayplus: #8a8989;
+    --font-description: #6a6a6a;
+    --font-black: #181818;
+}
