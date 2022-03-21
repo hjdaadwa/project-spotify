@@ -34,14 +34,15 @@
                     </a>
                 </li>
                 <li class="header__navigation-item">
-                    <a class="header__navigation-link" href="./favorite.html">
+                    <a class="header__navigation-link" href="./favorites.html">
                         <svg class="header__navigation-icon" role="img" width="24" height="24" viewBox="0 0 1280.000000 1189.000000"><g transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)">
                         <path d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001 -2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360 634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346 -2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178 408 373 1027 923 956 852 1445 1343 1841 1850 643 825 968 1603 1064 2553 19 196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998 -193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417 -535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535 610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"/></g>
                         </svg>
-                        <span class="header__navigation-text">Favorite</span>
+                        <span class="header__navigation-text">Favorites</span>
                     </a>
                 </li>
             </ul>
+            <a href="./presentation-search.html">ПРИМЕР РАБОТЫ ПОИСКА</a>
         </nav>
     </header>
     <main class="main">
@@ -55,19 +56,118 @@
                         <svg class="top-panel__control-img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M8.043 2.793a1 1 0 000 1.414L15.836 12l-7.793 7.793a1 1 0 101.414 1.414L18.664 12 9.457 2.793a1 1 0 00-1.414 0z"></path></svg>
                     </button>
                 </div>
-                <div class="top-panel__other"></div>
+                <div class="top-panel__other">
+                    <div class="top-panel__search search">
+                        <form class="search__form" role="search">
+                            <input class="search__input" type="text" placeholder="Author, track or album">
+                        </form>
+                        <div class="search__img-container">
+                            <svg class="search__img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path></svg>
+                        </div>
+                        <button class="search__clear-btn">
+                            <svg class="search__clear-btn-img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M3.293 3.293a1 1 0 011.414 0L12 10.586l7.293-7.293a1 1 0 111.414 1.414L13.414 12l7.293 7.293a1 1 0 01-1.414 1.414L12 13.414l-7.293 7.293a1 1 0 01-1.414-1.414L10.586 12 3.293 4.707a1 1 0 010-1.414z"></path></svg>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="top-panel__authorization">
-                <button class="top-panel__authorization-btn" aria-label="Authorization button">sign in</button>
+                <button class="authorization-btn" aria-label="Authorization button">sign in</button>
             </div>
         </section>
         <section class="main-container">
             <section class="category">
                 <div class="category__header">
-                    <h2 class="category__title">All</h2>
+                    <h2 class="category__title">Genres</h2>
                 </div>
-                <div class="category__content_all">
-                   
+                <div class="category__content_layout-type_all">
+                    <article class="category__card genre-card genre-card_theme_azure ">
+                        <h3 class="genre-card__title">Podcasts</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" alt="Dissect" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_dark-blue">
+                        <h3 class="genre-card__title">For you</h3>
+                        <img class="genre-card__img" src="https://t.scdn.co/images/ea364e99656e46a096ea1df50f581efe" alt="Pro Mix" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Charts</h3>
+                        <img class="genre-card__img" src="https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg" alt="Top songs global" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Recommendations</h3>
+                        <img class="genre-card__img" src="https://t.scdn.co/images/d0fb2ab104dc4846bdc56d72b0b0d785.jpeg" alt="Recommendations" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-blue">
+                        <h3 class="genre-card__title">Relax</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="Relax" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_red">
+                        <h3 class="genre-card__title">Rock</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f00000002fe6d8d1019d5b302213e3730" alt="Rock" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card">
+                        <h3 class="genre-card__title">Training</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000029249b35f23fb596b6f006a15" alt="Training" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_azure ">
+                        <h3 class="genre-card__title">Podcasts</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" alt="Dissect" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Recommendations</h3>
+                        <img class="genre-card__img" src="https://t.scdn.co/images/d0fb2ab104dc4846bdc56d72b0b0d785.jpeg" alt="Recommendations" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-blue">
+                        <h3 class="genre-card__title">Relax</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="Relax" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_azure ">
+                        <h3 class="genre-card__title">Podcasts</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" alt="Dissect" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Recommendations</h3>
+                        <img class="genre-card__img" src="https://t.scdn.co/images/d0fb2ab104dc4846bdc56d72b0b0d785.jpeg" alt="Recommendations" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-blue">
+                        <h3 class="genre-card__title">Relax</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="Relax" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Charts</h3>
+                        <img class="genre-card__img" src="https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg" alt="Top songs global" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_violet">
+                        <h3 class="genre-card__title">Charts</h3>
+                        <img class="genre-card__img" src="https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg" alt="Top songs global" width="100" height="100">
+                    </article>
+                    <article class="category__card genre-card genre-card_theme_light-red">
+                        <h3 class="genre-card__title">New releases</h3>
+                        <img class="genre-card__img" src="https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112" alt="New music" width="100" height="100">
+                    </article>
                 </div>
             </section>
         </section>

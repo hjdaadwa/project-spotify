@@ -16,13 +16,13 @@
         <nav class="header__navigation">
             <ul class="header__navigation-list">
                 <li class="header__navigation-item">
-                    <a class="header__navigation-link header__navigation-link_active" href="./index.html">
+                    <a class="header__navigation-link" href="./index.html">
                         <svg class="header__navigation-icon" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M12.5 3.247a1 1 0 00-1 0L4 7.577V20h4.5v-6a1 1 0 011-1h5a1 1 0 011 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 013 0l7.5 4.33a2 2 0 011 1.732V21a1 1 0 01-1 1h-6.5a1 1 0 01-1-1v-6h-3v6a1 1 0 01-1 1H3a1 1 0 01-1-1V7.577a2 2 0 011-1.732l7.5-4.33z"></path></svg>
                         <span class="header__navigation-text">Home</span>
                     </a>
                 </li>
                 <li class="header__navigation-item">
-                    <a class="header__navigation-link" href="./search.html">
+                    <a class="header__navigation-link  header__navigation-link_active" href="./search.html">
                         <svg class="header__navigation-icon" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path></svg>
                         <span class="header__navigation-text">Search</span>
                     </a>
@@ -55,7 +55,19 @@
                         <svg class="top-panel__control-img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M8.043 2.793a1 1 0 000 1.414L15.836 12l-7.793 7.793a1 1 0 101.414 1.414L18.664 12 9.457 2.793a1 1 0 00-1.414 0z"></path></svg>
                     </button>
                 </div>
-                <div class="top-panel__other"></div>
+                <div class="top-panel__other">
+                    <div class="top-panel__search search">
+                        <form class="search__form" role="search">
+                            <input class="search__input" type="text" placeholder="Author, track or album" value="slipknot">
+                        </form>
+                        <div class="search__img-container">
+                            <svg class="search__img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path></svg>
+                        </div>
+                        <button class="search__clear-btn">
+                            <svg class="search__clear-btn-img" role="img" height="24" width="24" viewBox="0 0 24 24"><path d="M3.293 3.293a1 1 0 011.414 0L12 10.586l7.293-7.293a1 1 0 111.414 1.414L13.414 12l7.293 7.293a1 1 0 01-1.414 1.414L12 13.414l-7.293 7.293a1 1 0 01-1.414-1.414L10.586 12 3.293 4.707a1 1 0 010-1.414z"></path></svg>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="top-panel__authorization">
                 <button class="authorization-btn" aria-label="Authorization button">sign in</button>
@@ -64,151 +76,199 @@
         <section class="main-container">
             <section class="category">
                 <div class="category__header">
-                    <h2 class="category__title">Night</h2>
+                    <h2 class="category__title">Tracks</h2>
+                    <a class="category__link" href="#">all</a>
                 </div>
-                <div class="category__content_layout-type_all">
+                <div class="category__content category__content_layout-type_list">
+                    <article class="category__track track">
+                        <div class="track__img-container">
+                            <img class="track__img" src="https://i.scdn.co/image/ab67616d00004851e7fbc0883149094912559f2c" alt="Track picture" width="64" height="64">
+                        </div>
+                        <div class="track__text">
+                            <h4 class="track__name">Psychosocial</h4>
+                            <p class="track__author">Slipknot</p>
+                        </div>
+                        <p class="track__duration">4:44</p>
+                    </article>
+                    <article class="category__track track">
+                        <div class="track__img-container">
+                            <img class="track__img" src="https://i.scdn.co/image/ab67616d000048516b3463e7160d333ada4b175a" alt="Track picture" width="64" height="64">
+                        </div>
+                        <div class="track__text">
+                            <h4 class="track__name">Duality</h4>
+                            <p class="track__author">Slipknot</p>
+                        </div>
+                        <p class="track__duration">4:12</p>
+                    </article>
+                    <article class="category__track track">
+                        <div class="track__img-container">
+                            <img class="track__img" src="https://i.scdn.co/image/ab67616d00004851e7fbc0883149094912559f2c" alt="Track picture" width="64" height="64">
+                        </div>
+                        <div class="track__text">
+                            <h4 class="track__name">Psychosocial</h4>
+                            <p class="track__author">Slipknot</p>
+                        </div>
+                        <p class="track__duration">4:44</p>
+                    </article>
+                    <article class="category__track track">
+                        <div class="track__img-container">
+                            <img class="track__img" src="https://i.scdn.co/image/ab67616d000048516b3463e7160d333ada4b175a" alt="Track picture" width="64" height="64">
+                        </div>
+                        <div class="track__text">
+                            <h4 class="track__name">Duality</h4>
+                            <p class="track__author">Slipknot</p>
+                        </div>
+                        <p class="track__duration">4:12</p>
+                    </article>
+                </div>
+            </section>
+            <section class="category">
+                <div class="category__header">
+                    <h2 class="category__title">Artists</h2>
+                    <a class="category__link" href="../src/presentation-all.html">all</a>
+                </div>
+                <div class="category__content">
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab6761610000f178f0a5deed446cf15482289b9d" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab67616d0000b27392fc1784dbee88bbd3190d93" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab67616d0000b273ed09a1c92713d57e019cf2f8" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Bendrick_Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">test</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab6761610000f178f0a5deed446cf15482289b9d" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab67616d0000b27392fc1784dbee88bbd3190d93" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="https://i.scdn.co/image/ab67616d0000b273ed09a1c92713d57e019cf2f8" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">Bendrick_Slipknot</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                    <article class="category__card author">
+                        <div class="author__img-container">
+                            <img class="author__img" src="" alt="" width="150" height="150">
+                        </div>
+                        <div class="author__text">
+                            <h3 class="author__title">test</h3>
+                            <p class="author__description">Performer</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="category">
+                <div class="category__header">
+                    <h2 class="category__title">Albums</h2>
+                    <a class="category__link" href="../src/presentation-all.html">all</a>
+                </div>
+                <div class="category__content">
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e02baf04a1d30db6ac9de26da7d" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep. dawdawdadawdadad</p>
+                            <h3 class="collection__title">Slipknot  (10th Anniversary Edition)</h3>
+                            <p class="collection__description">2003•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e026b3463e7160d333ada4b175a" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
+                            <h3 class="collection__title">Vol. 3: The Subliminal Verses</h3>
+                            <p class="collection__description">2004•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e02a62eefef8ee83d5e09aa8331" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
+                            <h3 class="collection__title">low</h3>
+                            <p class="collection__description">2001•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e02baf04a1d30db6ac9de26da7d" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep. dawdawdadawdadad</p>
+                            <h3 class="collection__title">Slipknot  (10th Anniversary Edition)</h3>
+                            <p class="collection__description">2003•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e026b3463e7160d333ada4b175a" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
+                            <h3 class="collection__title">Vol. 3: The Subliminal Verses</h3>
+                            <p class="collection__description">2004•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e02a62eefef8ee83d5e09aa8331" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
+                            <h3 class="collection__title">low</h3>
+                            <p class="collection__description">2001•Slipknot</p>
                         </div>
                     </article>
                     <article class="category__card collection">
                         <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
+                            <img class="collection__img" src="https://i.scdn.co/image/ab67616d00001e026b3463e7160d333ada4b175a" alt="" width="150" height="150">
                         </div>
                         <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep. dawdawdadawdadad</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
-                        </div>
-                    </article>
-                    <article class="category__card collection">
-                        <div class="collection__img-container">
-                            <img class="collection__img" src="https://i.scdn.co/image/ab67706f00000002b70e0223f544b1faa2e95ed0" alt="" width="150" height="150">
-                        </div>
-                        <div class="collection__text">
-                            <h3 class="collection__title">Sleep</h3>
-                            <p class="collection__description">Gentle ambient piano to help you fall asleep.</p>
+                            <h3 class="collection__title">Vol. 3: The Subliminal Verses</h3>
+                            <p class="collection__description">2004•Slipknot</p>
                         </div>
                     </article>
                 </div>
