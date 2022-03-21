@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 ::-webkit-scrollbar {
-    width: 14px;
+    width: 12px;
     height: 8px;
     background-color: var(--bg-main);
 }
@@ -83,6 +83,7 @@ html {
 }
 .main__top-panel {
     position: fixed;
+    margin-right: 13px;
 }
 .main-container {
     margin-top: 64px;
