@@ -1,9 +1,13 @@
 html {
     --bg-header: #000000;
-    --bg-panel: #1d1d1d;
+    --bg-card: rgba(43, 41, 41, 0.95);
+    --bg-panel: rgba(29,29,29,.95);
+    --bg-panel-o: rgba(29,29,29,0);
     --bg-main: #121212;
     --bg-progress-bar: #535353;
     --bg-gray: #333333;
+    --bg-placeholder: rgba(37, 36, 36, 0.616);
+    
 
     --font-green: #1DB954;
     --font-white: #FFFFFF;
@@ -11,4 +15,5 @@ html {
     --font-grayplus: #8a8989;
     --font-description: #6a6a6a;
     --font-black: #181818;
+    --font-desc-card: #a7a7a7;
 }
