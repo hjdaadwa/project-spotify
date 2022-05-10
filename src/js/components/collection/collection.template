@@ -1,0 +1,5 @@
+<div class="category__header">
+    <h2 class="category__title"></h2>
+    <a class="category__link">all</a>
+</div>
+<div class="category__content"></div>

@@ -1,0 +1,25 @@
+<div class="playlist__header">
+    <div class="plalist__img-container preloader">
+        <img class="playlist__img" src="" alt="Playlist image" width="232" height="232" crossorigin="anonymous">  
+    </div>
+    <div class="playlist__info">
+        <p class="playlist__type preloader"></p>
+        <h1 class="playlist__name preloader"></h1>
+        <p class="playlist__description"></p>
+        <div class="playlist__data preloader">
+            <div class="playlist__avatar-container">
+                <img class="playlist__avatar" src="" alt="User image" width="24" height="24">
+            </div>
+            <span class="playlist__user-name"></span>
+            <span class="playlist__counter"></span>
+            <span class="playlist__followers"></span>
+        </div>
+    </div>
+</div>
+<div class="playlist__play-btn">
+    <div class="play-button">
+        <svg class="play-button__img play-button__img_play" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
+        <svg class="play-button__img play-button__img_stop" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M5.7 3a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7H5.7zm10 0a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7h-2.6z"></path></svg>
+    </div>
+</div>
+<div class="playlist__content-container"></div>

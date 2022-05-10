@@ -1,0 +1,10 @@
+.error__search {
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    margin-top: 275px;
+    text-align: center;
+}
+.search__clear-btn {
+    cursor: pointer;
+}

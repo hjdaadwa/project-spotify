@@ -1,0 +1,7 @@
+<div class="author__img-container">
+    <img class="author__img" src="" alt="" width="150" height="150">
+</div>
+<div class="author__text">
+    <h3 class="author__title"></h3>
+    <p class="author__description"></p>
+</div>

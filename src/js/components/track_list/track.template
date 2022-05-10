@@ -1,0 +1,15 @@
+<div class="full-track__col1"></div>
+<div class="full-track__col2">
+    <div class="full-track__card">
+        <img class="full-track__img" src="" alt="Track image" width="40" height="40">
+        <div class="full-track__info">
+            <span class="full-track__name"></span>
+            <div class="full-track__artists"></div>
+        </div>
+    </div>
+</div>
+<div class="full-track__col3">
+    <a class="full-track__col3-link"></a>
+</div>
+<div class="full-track__col4"></div>
+<div class="full-track__col5"></div>
