@@ -28,8 +28,9 @@
 }
 .category__content {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     overflow: hidden;
+    max-height: 250px;
 }
 .category__content_layout-type_list {
     display: block;

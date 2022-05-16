@@ -98,3 +98,37 @@
    color: var(--font-white);
    text-decoration: underline;
  }
+ .track {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   max-width: 1580px;
+   padding: 10px 40px 10px 10px;
+   border-radius: 8px;
+   transition: .1s;
+   cursor: pointer;
+}
+.track:hover {
+   background-color: var(--bg-panel);
+}
+.track__img-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 20px;
+   overflow: hidden;
+}
+.track__text {
+   flex-grow: 1;
+}
+.track__name {
+   margin-bottom: 4px;
+   color: var(--font-white);
+   font-weight: 700;
+}
+.track__author {
+   color: var(--font-gray);
+   font-size: 0.875rem;
+   font-weight: 400;
+}

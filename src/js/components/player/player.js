@@ -1,10 +1,12 @@
 import playButtonTemplate from './play_btn.template';
 
 
+/**
+ * Отвечает за работу плеера.
+ */
 class Player {
     /**
      * Создает экземпляр Player. Инициализируется 1 раз в точке входа.
-     * 
      * @constructor
      * @this {Player}
      */
@@ -35,15 +37,15 @@ class Player {
         this.muteButton.addEventListener('click', this.mute.bind(this));
 
         this.volumeBar = document.querySelector('.music-player__volume-bar-input');
-        this.audio.volume = 0.3;
+        this.audio.volume = 0.1;
         this.volumeBar.addEventListener('input', this.changeVolume.bind(this));
 
 
         this.playbackPosition = document.querySelector('.music-player__playback-bar');
-        this.playbackPosition.addEventListener('click', this.changePlaybackPosition.bind(this));
+        this.playbackPosition.addEventListener('mousedown', this.takePlaybackPosition.bind(this));
+        this.playbackPosition.addEventListener('mouseup', this.changePlaybackPosition.bind(this));
         
         this.audio.addEventListener('timeupdate', this.getPlaybackPosition.bind(this));
-
     }
 
     /**
@@ -164,7 +166,6 @@ class Player {
                 this.mainPlayButton.addEventListener('click', this.switchState.bind(this));
             }          
         }
-
         this.play();
         this.changeView();
     }
@@ -266,11 +267,15 @@ class Player {
     /**
      * Изменение текущего значения времени трека
      */
-    changePlaybackPosition() {
-        console.log(this.playbackPosition.value);
-        this.audio.pause();
-        this.audio.currentTime = this.playbackPosition.value;
-        this.audio.play();
+    changePlaybackPosition(e) {
+        this.audio.currentTime = e.offsetX / 20;
+        this.play();          
+    }
+    takePlaybackPosition(e) {
+        if (!this.audio.paused) {
+            this.pause();
+        }
+        this.audio.currentTime = e.offsetX / 20;       
     }
 }
 

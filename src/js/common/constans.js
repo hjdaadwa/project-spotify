@@ -1,3 +1,7 @@
+/**
+ * Константы приложения
+ * @constant
+ */
 const constants = {
     routes: {
         index: '/',

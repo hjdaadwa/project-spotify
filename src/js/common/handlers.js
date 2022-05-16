@@ -1,7 +1,9 @@
 import constants from "./constans.js";
-import API from "../api/api.js";
 
 
+/**
+ * Меняет прозрачность верхней панели
+ */
 const initHandlers = () => {
     constants.main.addEventListener('scroll', () => {
         if (constants.main.scrollTop > 300) {
