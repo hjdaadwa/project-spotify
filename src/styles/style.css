@@ -146,6 +146,9 @@ html {
 .nav-panel {
     display: none;
 }
+.nav-panel_active {
+    display: block;
+}
 .nav-panel__list {
     display: flex;
     list-style-type: none;
@@ -172,6 +175,9 @@ html {
     display: none;
     position: relative;
     width: 364px;
+}
+.search_active {
+    display: block;
 }
 .search__input {
     width: 100%;

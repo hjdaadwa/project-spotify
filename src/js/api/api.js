@@ -1,4 +1,4 @@
-import { user } from "../components/user/user.js";
+import getUser from "../components/user/user.js";
 
 const baseSpotifyURL = 'https://api.spotify.com/v1/';
 const baseMyServerURL = 'http://localhost:8888/';
@@ -14,7 +14,7 @@ async function getFetch(url) {
         headers: {
             "Accept": "application/json",
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user.oAuth.accessToken,
+            'Authorization': 'Bearer ' + getUser().oAuth.accessToken,
         },
     })
 }
@@ -25,9 +25,7 @@ async function getFetch(url) {
  * @async
  */
 async function refreshToken() {
-    return fetch(`${baseMyServerURL}refresh_token?refresh_token=${user.oAuth.refreshToken}`);
-        // .then(response => response.text().then(text => user.oAuth.setAccessToken(JSON.parse(text).access_token))).catch(err => console.log(err));
-
+    return fetch(`${baseMyServerURL}refresh_token?refresh_token=${getUser().oAuth.refreshToken}`);
 }
 
 const API = {

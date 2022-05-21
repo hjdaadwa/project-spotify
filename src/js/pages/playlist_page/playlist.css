@@ -36,6 +36,16 @@
     font-size: 6rem;
     letter-spacing: -0.04em;
 }
+.playlist__name_size_small {
+    font-size: 2rem;
+    margin: 10px 0px;
+}
+.playlist__name_size_normal {
+    font-size: 3rem;
+}
+.playlist__name_size_large {
+    font-size: 4rem;
+}
 .playlist__description {
     color: rgba(255,255,255,.7);
     font-weight: 200;

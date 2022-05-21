@@ -1,5 +1,5 @@
 import artistCardTemplate from "../../components/artist_card/artist_card.template";
-import { router } from "../../router/index.js";
+import getRouter from "../../router/index.js";
 
 
 /**
@@ -33,7 +33,7 @@ export default class ArtistCard {
         this.$template.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            router.goTo(`/artist/${this.data.id}`);
+            getRouter().goTo(`/artist/${this.data.id}`);
         });
     }
 

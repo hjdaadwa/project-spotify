@@ -285,11 +285,14 @@ class Player {
 let player;
 
 /**
- * Инициализирует плеер
+ * Создать или получить объект плеера
  */
-const initPlayer = () => {
-    player = new Player();
+const getPlayer = () => {
+    if (!player) {
+        player = new Player();
+    }
+    return player;
 }
 
-export default initPlayer;
-export {player};
+export default getPlayer;
+// export {player};

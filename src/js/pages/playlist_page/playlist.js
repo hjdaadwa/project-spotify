@@ -1,11 +1,11 @@
 import playlistTemplate from './playlist.template';
 import constants from '../../common/constans.js';
 import API from '../../api/api.js';
-import { user } from '../../components/user/user.js';
+import getUser from '../../components/user/user.js';
 import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
 import { ApiError, errorHandler } from '../../common/Errors';
-import { player } from '../../components/player/player';
+import getPlayer from '../../components/player/player';
 
 
 /**
@@ -31,14 +31,19 @@ export default class PlayList {
         this.$template = document.createElement('article');
         this.$template.classList.add('playlist');
         this.$template.innerHTML = playlistTemplate();
+
         this.$header = this.$template.querySelector('.playlist__header');
+
         this.$imgPlaylist = this.$template.querySelector('.playlist__img');
         this.$imgPlaylist.hidden = true;
+
         this.$type =this.$template.querySelector('.playlist__type');
         this.$name = this.$template.querySelector('.playlist__name');
         this.$description = this.$template.querySelector('.playlist__description');
+
         this.$imgUser = this.$template.querySelector('.playlist__avatar');
         this.$imgUser.hidden = true;
+
         this.$authorName = this.$template.querySelector('.playlist__user-name');
         this.$counter = this.$template.querySelector('.playlist__counter');
         this.$followers = this.$template.querySelector('.playlist__followers');
@@ -98,10 +103,10 @@ export default class PlayList {
             this.$imgPlaylist.hidden = false;
             this.$type.textContent = 'playlist';
             this.$name.textContent = 'Favorite tracks';
-            this.$imgUser.src = user.data.images[0]?.url || user.data.images[1]?.url || user.data.images[2]?.url || 'https://i.ibb.co/51drLLx/default-user.png';
+            this.$imgUser.src = getUser().data.images[0]?.url || getUser().data.images[1]?.url || getUser().data.images[2]?.url || 'https://i.ibb.co/51drLLx/default-user.png';
             this.$imgUser.crossOrigin = 'anonymous';
             this.$imgUser.hidden = false;
-            this.$authorName.textContent = user.data.display_name;
+            this.$authorName.textContent = getUser().data.display_name;
             this.$counter.textContent = `  tracks: ${this.data.total}`;
             this.$followers.hidden = true;
             this.$template.querySelectorAll('.preloader').forEach((item) => {
@@ -113,12 +118,12 @@ export default class PlayList {
             this.$imgPlaylist.hidden = false;
             this.$type.textContent = this.data.type;
             if (this.data.name.length >= 50) {
-                this.$name.style.fontSize = '2rem';
-                this.$name.style.margin = '10px 0px';
+                this.$name.classList.add('playlist__name_size_small');
             } else if (this.data.name.length >= 35) {
-                this.$name.style.fontSize = '3rem';
+
+                this.$name.classList.add('playlist__name_size_normal');
             } else if (this.data.name.length >= 20) {
-                this.$name.style.fontSize = '4rem';
+                this.$name.classList.add('playlist__name_size_large');
             }
             this.$name.textContent = this.data.name;
             this.$description.textContent = this.data.description;
@@ -138,6 +143,6 @@ export default class PlayList {
      * Обработчик событий. Отправляет текущий трэклист страницы плееру.
      */
     addAudioHandler() {
-        player.load(this.tracksView.audioData, 0, this.$mainPlayButton);
+        getPlayer().load(this.tracksView.audioData, 0, this.$mainPlayButton);
     }
 }

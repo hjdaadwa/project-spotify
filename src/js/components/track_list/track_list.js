@@ -1,7 +1,7 @@
 import trackListTemplate from './track_list.template'
 import trackTemplate from './track.template'
-import { router } from '../../router/index.js';
-import { player } from '../player/player';
+import getRouter from '../../router/index.js';
+import getPlayer from '../player/player';
 import API from '../../api/api';
 import { ApiError, errorHandler } from '../../common/Errors';
 
@@ -93,14 +93,14 @@ export default class TrackList {
                         $artist.textContent = `${element.name},`;
                     }
                     $artist.href = `/artist/${element.id}`;
-                    router.addLinkHandler($artist);
+                    getRouter().addLinkHandler($artist);
                     $artists.append($artist);
                 });
         
                 const $album = $component.querySelector('.full-track__col3-link');
                 $album.textContent = item.track.album.name;
                 $album.href = `/album/${item.track.album.id}`;
-                router.addLinkHandler($album);
+                getRouter().addLinkHandler($album);
                 
         
                 const $date = $component.querySelector('.full-track__col4');
@@ -154,7 +154,7 @@ export default class TrackList {
                         $artist.textContent = `${element.name},`;
                     }
                     $artist.href = `/artist/${element.id}`;
-                    router.addLinkHandler($artist);
+                    getRouter().addLinkHandler($artist);
                     $artists.append($artist);
                 });
         
@@ -216,7 +216,7 @@ export default class TrackList {
                 const $album = $component.querySelector('.full-track__col3-link');
                 $album.textContent = item.album.name;
                 $album.href = `/album/${item.album.id}`;
-                router.addLinkHandler($album);
+                getRouter().addLinkHandler($album);
         
                 const $duration = $component.querySelector('.full-track__col5');
                 const durationMs = new Date(item.duration_ms);
@@ -252,11 +252,9 @@ export default class TrackList {
     addAudioHandlers(event) {
         event.preventDefault();
         if (event.currentTarget.classList.contains('full-track_active')) {
-            player.switchState();
+            getPlayer().switchState();
         } else {
-            player.load(this.audioData, event.currentTarget.dataset.pid);
+            getPlayer().load(this.audioData, event.currentTarget.dataset.pid);
         }     
     }
 }
-
-

@@ -3,8 +3,8 @@ import constants from '../../common/constans.js';
 import API from '../../api/api.js';
 import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
-import { router} from '../../router/index.js';
-import { player } from '../../components/player/player';
+import getRouter from '../../router/index.js';
+import getPlayer from '../../components/player/player';
 import { ApiError, errorHandler } from '../../common/Errors';
 
 /**
@@ -85,12 +85,12 @@ export default class Album {
         this.$imgPlaylist.hidden = false;
         this.$type.textContent = this.data.album_type;
         if (this.data.name.length >= 50) {
-            this.$name.style.fontSize = '2rem';
-            this.$name.style.margin = '10px';
+            this.$name.classList.add('playlist__name_size_small');
         } else if (this.data.name.length >= 35) {
-            this.$name.style.fontSize = '3rem';
+
+            this.$name.classList.add('playlist__name_size_normal');
         } else if (this.data.name.length >= 20) {
-            this.$name.style.fontSize = '4rem';
+            this.$name.classList.add('playlist__name_size_large');
         }
         this.$name.textContent = this.data.name;
 
@@ -121,7 +121,7 @@ export default class Album {
             $artist.classList.add('album__artist');
             $artist.textContent = `${element.name}`;           
             $artist.href = `/artist/${element.id}`;
-            router.addLinkHandler($artist);
+            getRouter().addLinkHandler($artist);
             const $dot = document.createElement('span');
             $dot.classList.add('decoration__dot');
             $dot.textContent = '•';
@@ -143,6 +143,6 @@ export default class Album {
      * Обработчик событий. Отправляет текущий трэклист страницы плееру.
      */
     addAudioHandler() {
-        player.load(this.tracksView.audioData, 0, this.$mainPlayButton);
+        getPlayer().load(this.tracksView.audioData, 0, this.$mainPlayButton);
     }
 }

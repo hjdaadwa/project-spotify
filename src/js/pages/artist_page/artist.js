@@ -4,7 +4,7 @@ import API from '../../api/api.js';
 import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
 import Collection from '../../components/collection/collection';
-import { player } from '../../components/player/player';
+import getPlayer from '../../components/player/player';
 import { ApiError, errorHandler } from '../../common/Errors';
 
 /**
@@ -126,12 +126,12 @@ export default class Artist {
         this.$imgPlaylist.hidden = false;
 
         if (this.data.name.length >= 50) {
-            this.$name.style.fontSize = '2rem';
-            this.$name.style.margin = '10px';
+            this.$name.classList.add('playlist__name_size_small');
         } else if (this.data.name.length >= 35) {
-            this.$name.style.fontSize = '3rem';
+
+            this.$name.classList.add('playlist__name_size_normal');
         } else if (this.data.name.length >= 20) {
-            this.$name.style.fontSize = '4rem';
+            this.$name.classList.add('playlist__name_size_large');
         }
         this.$name.textContent = this.data.name;
 
@@ -179,6 +179,6 @@ export default class Artist {
      * Обработчик событий. Отправляет текущий трэклист страницы плееру.
      */
     addAudioHandler() {
-        player.load(this.tracksListView.audioData, 0, this.$mainPlayButton);
+        getPlayer().load(this.tracksListView.audioData, 0, this.$mainPlayButton);
     }
 }

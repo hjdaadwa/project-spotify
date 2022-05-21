@@ -9,8 +9,8 @@ import SearchPage from "../pages/search_page/search_page.js";
 import Category from "../pages/category_page/category_page.js";
 import LibraryPage from "../pages/library_page/library_page.js";
 
-import { user } from "../components/user/user.js";
-import { UIcontroller } from "../common/UIController.js";
+import getUser from "../components/user/user.js";
+import getUIcontroller from "../common/UIController.js";
 
 
 /**
@@ -36,7 +36,7 @@ class Router {
             collection: new Route(constants.routes.collection),
         };
         window.addEventListener('popstate', () => {
-            router.render(new URL(window.location.href).pathname)
+            this.render(new URL(window.location.href).pathname)
         });
         document.querySelectorAll('a[href^="/"]').forEach($el => {
             this.addLinkHandler($el);
@@ -54,44 +54,44 @@ class Router {
     render(path) {
         let page;
     
-        if (!user.oAuth.accessToken) {
-            UIcontroller.switchComponents('empty');
+        if (!getUser().oAuth.accessToken) {
+            getUIcontroller().switchComponents('empty');
             constants.app.innerHTML = "<h1 class='error__search'>Please login</h1>";
     
         } else if (this.routes.mainRoute.match(path)) {
-            UIcontroller.switchComponents('main');
+            getUIcontroller().switchComponents('main');
             page = new MainPage();
             page.updateData();
     
         } else if (this.routes.searchRoute.match(path)) {
-            UIcontroller.switchComponents('search');
+            getUIcontroller().switchComponents('search');
             new SearchPage(this.routes.searchRoute.match(path).id);
     
         } else if (this.routes.collection.match(path)) {
             if (this.routes.collection.match(path).id === 'playlists' || this.routes.collection.match(path).id === 'albums' || this.routes.collection.match(path).id === 'artists') {
-                UIcontroller.switchComponents('collection', this.routes.collection.match(path).id);
+                getUIcontroller().switchComponents('collection', this.routes.collection.match(path).id);
                 new LibraryPage(this.routes.collection.match(path).id);
             } else {
                 this.render('####');
             }
     
         } else if (this.routes.playlistRoute.match(path)) {
-            UIcontroller.switchComponents('playlists', this.routes.playlistRoute.match(path).id);
+            getUIcontroller().switchComponents('playlists', this.routes.playlistRoute.match(path).id);
             page = new PlayList(this.routes.playlistRoute.match(path).id);
             page.updateData();
     
         } else if (this.routes.albumRoute.match(path)) {
-            UIcontroller.switchComponents('_');
+            getUIcontroller().switchComponents('_');
             page = new Album(this.routes.albumRoute.match(path).id);
             page.updateData();
     
         } else if (this.routes.artist.match(path)) {
-            UIcontroller.switchComponents('_');
+            getUIcontroller().switchComponents('_');
             page = new Artist(this.routes.artist.match(path).id);
             page.updateData();
     
         } else if (this.routes.category.match(path)) {
-            UIcontroller.switchComponents('_');
+            getUIcontroller().switchComponents('_');
             new Category(
                 this.routes.category.match(path).id,
                 this.routes.category.match(path).name
@@ -100,7 +100,7 @@ class Router {
         } else if (!path) {
 
         } else {
-            UIcontroller.switchComponents('empty');
+            getUIcontroller().switchComponents('empty');
             constants.app.innerHTML = `<div class="error__container"><div class="error">
                                         <h1 class="error__title">This page does not exist</h1>
                                         <p class="error__description">Check if the url you entered is correct</p>
@@ -120,7 +120,7 @@ class Router {
      * @param {string} path - путь
      */
     goTo(path) {
-        window.history.pushState({path}, path, path);
+        window.history.pushState({}, '', path);
         this.render(path);
     }
 
@@ -142,11 +142,13 @@ class Router {
 let router;
 
 /**
- * Инициализация роутера
+ * Создать или получить объект роутера
  */
-const initRouter = () => {
-    router = new Router();
+const getRouter = () => {
+    if (!router) {
+        router = new Router();
+    }
+    return router;
 }
 
-export default initRouter;
-export {router};
+export default getRouter;

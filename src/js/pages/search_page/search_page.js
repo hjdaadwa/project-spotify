@@ -3,8 +3,8 @@ import API from '../../api/api.js';
 import Collection from '../../components/collection/collection';
 import searchTemplate from './search_page.template';
 import TrackList from '../../components/track_list/track_list.js';
-import { UIcontroller } from '../../common/UIController.js';
-import { router } from '../../router/index.js';
+import getUIcontroller from '../../common/UIController.js';
+import getRouter from '../../router/index.js';
 import { randomColor } from '../../common/get_color.js';
 import { ApiError, errorHandler } from '../../common/Errors.js';
 
@@ -21,13 +21,13 @@ export default class SearchPage {
      * @param {string} query - поисковой запрос пользователя.
      */
     constructor(query) {
-        UIcontroller.searchInput.value = query; 
+        getUIcontroller().searchInput.value = query; 
         this._createPage();
 
         if (query) {
             this._getData(query);
         } else {
-            UIcontroller.searchInput.value = '';
+            getUIcontroller().searchInput.value = '';
             this._renderDefaultPage();
         }
     }
@@ -124,7 +124,7 @@ export default class SearchPage {
                 $component.style.backgroundColor = randomColor();
                 $component.append($title,$img);
                 $component.addEventListener('click', () => {
-                    router.goTo(`/category/${item.id}/${item.name}`);
+                    getRouter().goTo(`/category/${item.id}/${item.name}`);
                 });
 
                 return $component;

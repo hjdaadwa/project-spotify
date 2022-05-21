@@ -1,7 +1,7 @@
 import API from "../../api/api";
 import constants from "../../common/constans";
 import Collection from "../../components/collection/collection";
-import { user } from "../../components/user/user.js";
+import getUser from "../../components/user/user.js";
 import { ApiError, errorHandler } from "../../common/Errors";
 
 /**
@@ -40,7 +40,7 @@ export default class LibraryPage {
     async _updateData(path) {
         if (path === 'playlists') {
             try {
-                const response = await API.get(`users/${user.data.id}/playlists?limit=30&offset=0`);
+                const response = await API.get(`users/${getUser().data.id}/playlists?limit=30&offset=0`);
                 if (!response.ok) {
                     throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
                 }

@@ -84,13 +84,14 @@ let user;
 /**
  * Функция инициализации пользователя.
  */
-const initUser = () => {
-    user = new User();
-    if (user.oAuth.accessToken) {
-        user.updateData();
+const getUser = () => {
+    if (!user) {
+        user = new User();
+        if (user.oAuth.accessToken) {
+            user.updateData();
+        }
     }
+    return user;
 }
 
-export default initUser;
-export {user};
-
+export default getUser;

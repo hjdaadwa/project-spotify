@@ -7,41 +7,11 @@ export default class OpenAuth2 {
      * При налачии токенов в редиректнутой странице, получает их.
      */
     constructor() {
-        this._accessToken = localStorage.getItem('accessToken');
-        this._refreshToken = localStorage.getItem('refreshToken');
+        this.accessToken = localStorage.getItem('accessToken');
+        this.refreshToken = localStorage.getItem('refreshToken');
         if (window.location.hash) {
             this.authorization();
         }
-    };
-
-    /**
-     * Геттер
-     * @returns {string} _accessToken - токен доступа
-     */
-    get accessToken() {
-        return this._accessToken;
-    };
-
-    /**
-     * Геттер
-     * @returns {string} _refreshToken - токен обновления
-     */
-    get refreshToken() {
-        return this._refreshToken;
-    };
-
-    /**
-     * Сеттер токена доступа
-     */
-    set accessToken(accessHash) {
-        this._accessToken = accessHash;
-    };
-
-    /**
-     * Сеттер токена обновления
-     */
-    set refreshToken(refreshHash) {
-        this._refreshToken = refreshHash;
     };
 
     /**

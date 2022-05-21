@@ -8,15 +8,10 @@ import ColorThief from '../../../node_modules/colorthief/dist/color-thief.mjs'
  */
 const getColor = (img, target) => {
     const colorThief = new ColorThief();
-    if (img.complete) {
-        const colors = colorThief.getColor(img);
-        target.style.backgroundColor = rgbToHex(...colors);
-    } else {
         img.addEventListener('load', function() {
             const colors = colorThief.getColor(img);
             target.style.backgroundColor = rgbToHex(...colors);
         })
-    }
 }
 
 /**

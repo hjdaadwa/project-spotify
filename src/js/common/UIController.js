@@ -1,5 +1,5 @@
-import { router } from "../router";
-
+import getRouter from "../router";
+import { delay } from "../common/services";
 
 /**
  * Контролирует отображение и работу навигационных элементов, поля поиска.
@@ -13,15 +13,21 @@ class UIController {
     constructor() {
         this.search = document.querySelector('.search');
         this.searchInput = document.querySelector('.search__input');
-        this.searchInput.addEventListener('keyup', this.delay(function() {
+        this.searchInput.addEventListener('keyup', delay(function() {
             if (this.value) {
-                router.goTo(`/search/${this.value}`);
+                getRouter().goTo(`/search/${this.value}`);
             } else {
-                router.goTo('/search');
+                getRouter().goTo('/search');
             }   
         }, 400));
         this.searchInput.addEventListener('keydown', (event) => {
-            if(event.keyCode == 13) {
+            if(event.code === 'Enter') {
+                event.preventDefault();
+                return;
+             }  
+        });
+        this.searchInput.addEventListener('keyup', (event) => {
+            if(event.code === 'Enter') {
                 event.preventDefault();
                 return;
              }  
@@ -30,7 +36,7 @@ class UIController {
         this.searchClearBtn.addEventListener('click', () => {
             const btn = document.querySelector('.search__input');
             btn.value = '';
-            router.goTo('/search');
+            getRouter().goTo('/search');
         });
 
         this.topNav = document.querySelector('.nav-panel');
@@ -55,34 +61,28 @@ class UIController {
     switchComponents(page, id) {
         switch (page) {
             case 'main':
-                this.search.style.display = 'none';
-                this.topNav.style.display = 'none';
+                this._switchTopPanelComponents();
                 this._switchLinks(this.navMain);
                 break;
             case 'search':
-                this.search.style.display = 'block';
-                this.topNav.style.display = 'none';
+                this._switchTopPanelComponents('search');
                 this._switchLinks(this.navSearch);
                 break;
             case 'collection':
-                this.search.style.display = 'none';
-                this.topNav.style.display = 'block';
+                this._switchTopPanelComponents('navigation');
                 this._switchLinks(this.navCollection);
                 this._switchTopLinks(id);    
                 break;
             case 'playlists':
-                this.search.style.display = 'none';
-                this.topNav.style.display = 'none';
+                this._switchTopPanelComponents();
                 id === 'me' ? this._switchLinks(this.navFavorite) : this._switchLinks();
                 break;
             case 'empty':
-                this.search.style.display = 'none';
-                this.topNav.style.display = 'none';
+                this._switchTopPanelComponents();
                 this._switchLinks();
                 break;                                     
             default:
-                this.search.style.display = 'none';
-                this.topNav.style.display = 'none';
+                this._switchTopPanelComponents();
                 this._switchLinks();
                 break;
         }
@@ -90,11 +90,12 @@ class UIController {
 
     /**
      * Меняет активный элемент основной навигации
-     * @param {HTMLElement} element - активный элемент
+     * @param {HTMLElement} [element] - активный элемент или без аргумента, если это не страница основой навигации
      * @private
      */
     _switchLinks(element) {
         this.navLinks.forEach(item => item.classList.remove('header__navigation-link_active'));
+
         if (element) {
             element.classList.add('header__navigation-link_active');
         }
@@ -109,6 +110,7 @@ class UIController {
         [this.topNavPlaylists, this.topNavArtists, this.topNavAlbums].forEach(item => {
             item.classList.remove('nav-panel__item_active')
         });
+
         if (id === 'playlists') {
             this.topNavPlaylists.classList.add('nav-panel__item_active');
         } else if (id === 'artists') {
@@ -116,36 +118,35 @@ class UIController {
         } else {
             this.topNavAlbums.classList.add('nav-panel__item_active');
         }
-    }
+    } 
 
     /**
-     * Функция задержки для поиска
-     * @param {number} ms - длительность 
-     * @returns 
+     * Меняет компоненты search и дополнительной навигации в верхней панеле
+     * @param {string} [component] - передаем нужный компонет или ничего, если отображать не требуется.
+     * @private
      */
-    delay(callback, ms) {
-        let timer = 0;
-        return function(event) {
-            if(event.keyCode == 13) {
-                event.preventDefault();
-             }
-          let context = this, args = arguments;
-          clearTimeout(timer);
-          timer = setTimeout(function () {
-            callback.apply(context, args);
-          }, ms || 0);
-        };
-      }   
+    _switchTopPanelComponents(component) {
+        this.topNav.classList.remove('nav-panel_active');
+        this.search.classList.remove('search_active');
+
+        if (component === 'search') {
+            this.search.classList.add('search_active');
+        } else if (component === 'navigation') {
+            this.topNav.classList.add('nav-panel_active');
+        }
+    }
 }
 
 let UIcontroller;
 
 /**
- * Инициализирует контроллер интерфейса
+ * Создать или получить объект роутера
  */
-const initUIController = () => {
-    UIcontroller = new UIController();
+const getUIController = () => {
+    if (!UIcontroller) {
+        UIcontroller = new UIController();
+    }
+    return UIcontroller;
 }
 
-export default initUIController;
-export {UIcontroller};
+export default getUIController;

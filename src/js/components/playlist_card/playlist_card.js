@@ -1,4 +1,4 @@
-import { router } from "../../router/index.js";
+import getRouter from "../../router/index.js";
 import playlistCardTemplate from "../../components/playlist_card/playlist_card.template"
 
 
@@ -34,7 +34,7 @@ export default class PlaylistCard {
         this.$template.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            router.goTo(`/playlist/${this.data.id}`);
+            getRouter().goTo(`/playlist/${this.data.id}`);
         });
     }
 

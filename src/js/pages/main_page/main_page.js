@@ -2,7 +2,7 @@ import mainPageTemplate from './main_page.template';
 import constants from '../../common/constans.js';
 import API from '../../api/api.js';
 import Collection from '../../components/collection/collection.js';
-import { user } from '../../components/user/user.js';
+import getUser from '../../components/user/user.js';
 import TrackList from '../../components/track_list/track_list';
 import { ApiError, errorHandler } from '../../common/Errors';
 
@@ -31,7 +31,7 @@ export default class MainPage {
         this.$template.classList.add('main-page');
         this.$template.innerHTML = mainPageTemplate();
         this.$title = this.$template.querySelector('.main-page__title');
-        this.$title.textContent ='Hi, ' + (user.data ? user.data.display_name + '!' : 'Friend!');
+        this.$title.textContent ='Hi, ' + (getUser().data ? getUser().data.display_name + '!' : 'Friend!');
         this.$header = this.$template.querySelector('.main-page__header');
         this.$container = this.$template.querySelector('.main-page__content');
     }

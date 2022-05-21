@@ -1,5 +1,5 @@
 import albumCardTemplate from "../../components/album_card/album_card.template";
-import { router } from "../../router/index.js";
+import getRouter from "../../router/index.js";
 
 /**
  * Класс представляющий компонент альбом.
@@ -42,7 +42,7 @@ export default class AlbumCard {
         this.$template.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            router.goTo(`/album/${this.data.id}`);
+            getRouter().goTo(`/album/${this.data.id}`);
         });
     }
 
