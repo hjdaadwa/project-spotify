@@ -6,7 +6,6 @@ import TrackList from '../../components/track_list/track_list.js';
 import getUIcontroller from '../../common/UIController.js';
 import getRouter from '../../router/index.js';
 import { randomColor } from '../../common/get_color.js';
-import { ApiError, errorHandler } from '../../common/Errors.js';
 
 
 /**
@@ -50,25 +49,13 @@ export default class SearchPage {
      * @param {string} query - запрос
      */
     async _getData(query) {
-        try {
-            const response = await API.get(`search?q=${query}&type=track%2Cartist%2Cplaylist%2Calbum&market=US&limit=10&offset=0`);
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-            }
-            const data = await response.json();
-            let sum = Object.values(data).map(item => item.total).reduce((prev, curr) => prev + curr);
-            if (sum && sum !== 0) {
-                this._createSearchPage(data);
-            } else {
-                this._createErrorPage(query);
-            } 
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        }
+        const data = await API.get(`search?q=${query}&type=track%2Cartist%2Cplaylist%2Calbum&market=US&limit=10&offset=0`);
+        let sum = Object.values(data).map(item => item.total).reduce((prev, curr) => prev + curr);
+        if (sum && sum !== 0) {
+            this._createSearchPage(data);
+        } else {
+            this._createErrorPage(query);
+        } 
     }
 
     /**
@@ -103,40 +90,33 @@ export default class SearchPage {
     async _renderDefaultPage() {
         this.$template.innerHTML = searchTemplate();
         this.$container = this.$template.querySelector('.category__content_layout-type_all');
-        try {
-            const response = await API.get('browse/categories?country=US&limit=28&offset=0');
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-            }
-            const data = await response.json();
-            this.components = data.categories.items.map(item => {
-                const $component = document.createElement('article');
-                $component.classList.add('category__card', 'genre-card');
-                const $title = document.createElement('h3');
-                $title.classList.add('genre-card__title');
-                $title.textContent = item.name;
-                const $img = document.createElement('img');
-                $img.classList.add('genre-card__img');
-                $img.src = item.icons[0].url;
-                $img.alt = item.name;
-                $img.width = '100';
-                $img.height = '100';
-                $component.style.backgroundColor = randomColor();
-                $component.append($title,$img);
-                $component.addEventListener('click', () => {
-                    getRouter().goTo(`/category/${item.id}/${item.name}`);
-                });
 
-                return $component;
+        const data = await API.get('browse/categories?country=US&limit=28&offset=0');
+
+        this.components = data.categories.items.map(item => {
+            const $component = document.createElement('article');
+            $component.classList.add('category__card', 'genre-card');
+
+            const $title = document.createElement('h3');
+            $title.classList.add('genre-card__title');
+            $title.textContent = item.name;
+
+            const $img = document.createElement('img');
+            $img.classList.add('genre-card__img');
+            $img.src = item.icons[0].url;
+            $img.alt = item.name;
+            $img.width = '100';
+            $img.height = '100';
+            
+            $component.style.backgroundColor = randomColor();
+            $component.append($title,$img);
+            $component.addEventListener('click', () => {
+                getRouter().goTo(`/category/${item.id}/${item.name}`);
             });
+
+            return $component;
+        });
         this.$container.append(...this.components);
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        }
     }
 
     /**

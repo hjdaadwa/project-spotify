@@ -5,7 +5,7 @@ import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
 import getRouter from '../../router/index.js';
 import getPlayer from '../../components/player/player';
-import { ApiError, errorHandler } from '../../common/Errors';
+
 
 /**
  * Класс представляющий страницу альбома. Путь "/album".
@@ -30,13 +30,18 @@ export default class Album {
         this.$template = document.createElement('article');
         this.$template.classList.add('playlist');
         this.$template.innerHTML = albumTemplate();
+
         this.$header = this.$template.querySelector('.playlist__header');
+
         this.$imgPlaylist = this.$template.querySelector('.playlist__img');
         this.$imgPlaylist.hidden = true;
-        this.$type = this.$template.querySelector('.playlist__type')
+
+        this.$type = this.$template.querySelector('.playlist__type');
         this.$name = this.$template.querySelector('.playlist__name');
+
         this.$imgUser = this.$template.querySelector('.playlist__avatar');
         this.$imgUser.hidden = true;
+
         this.$year = this.$template.querySelector('.album__year');
         this.$mainPlayButton = this.$template.querySelector('.play-button');
         this.$counter = this.$template.querySelector('.playlist__counter');
@@ -60,30 +65,20 @@ export default class Album {
      * @async
      */
     async updateData() {
-        try {
-            const response = await API.get(`albums/${this.path}`);
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);
-            }
-            this.data = await response.json();
+            this.data = await API.get(`albums/${this.path}`);
             this._updateView();
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            } 
-        }
     }
 
     /**
      * Обновляет темплейт для текущих данных в this.data.
      * @private
      */
-    _updateView() {
+    async _updateView() {
         this.$imgPlaylist.src = this.data.images[0].url;
         this.$imgPlaylist.hidden = false;
+
         this.$type.textContent = this.data.album_type;
+
         if (this.data.name.length >= 50) {
             this.$name.classList.add('playlist__name_size_small');
         } else if (this.data.name.length >= 35) {
@@ -95,24 +90,12 @@ export default class Album {
         this.$name.textContent = this.data.name;
 
         this.$artistImg = this.$template.querySelector('.playlist__avatar');
+
         /**Если у альбома один исполнитель, запрашиваем данные о нем */
         if (this.data.artists.length === 1) {  
-            try {
-                API.get(`artists/${this.data.artists[0].id}`).then(async (response) => {
-                    if (!response.ok) {
-                        throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                    }
-                    const data = await response.json();
-                    this.$artistImg.src = data.images[0].url;
-                    this.$artistImg.hidden = false;
-                });
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            } 
+            const data = await API.get(`artists/${this.data.artists[0].id}`);
+            this.$artistImg.src = data.images[2]?.url || data.images[1]?.url || data.images[0]?.url;
+            this.$artistImg.hidden = false;
         }
 
         const $artists = this.$template.querySelector('.album__artists');
@@ -121,10 +104,13 @@ export default class Album {
             $artist.classList.add('album__artist');
             $artist.textContent = `${element.name}`;           
             $artist.href = `/artist/${element.id}`;
+
             getRouter().addLinkHandler($artist);
+
             const $dot = document.createElement('span');
             $dot.classList.add('decoration__dot');
             $dot.textContent = '•';
+
             $artists.append($artist, $dot);
         });
 
@@ -135,6 +121,7 @@ export default class Album {
         });
 
         getColor(this.$imgPlaylist, this.$header);
+
         this.tracksView = new TrackList(this.data.tracks.items, '', 'album');
         this.$container.append(this.tracksView.$template);
     }

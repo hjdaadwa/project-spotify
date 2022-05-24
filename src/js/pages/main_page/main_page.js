@@ -4,7 +4,6 @@ import API from '../../api/api.js';
 import Collection from '../../components/collection/collection.js';
 import getUser from '../../components/user/user.js';
 import TrackList from '../../components/track_list/track_list';
-import { ApiError, errorHandler } from '../../common/Errors';
 
 
 /**
@@ -60,59 +59,41 @@ export default class MainPage {
         ];
 
         try {
-            const responses = await Promise.all([
+            let data = await Promise.all([
                 API.get('me/top/tracks?time_range=medium_term&limit=10&offset=0'),
                 API.get('me/top/artists?time_range=short_term&limit=10&offset=0')            
             ]);
-            let data = [];
-            for (let item of responses) {
-                if (!item.ok) {
-                    throw new ApiError(item.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname)                                      
-                }
-                const element = await item.json();
-                if (element.total === 0) {
-                    throw "You don't have enough favorite tracks or artists";
-                }
-                data.push(element);
+            if (!(data[0].total === 0)) {
+                this._displayTrackList(data[0].items, 'Your TOP tracks', 'artist');                           
             }
-            this._displayTrackList(data[0].items, 'Your TOP tracks', 'artist');
-            this._displayCollection(data[1].items, 'Your TOP artists', 'artist');
-            const response = await API.get(
+            if (!(data[1].total === 0)) {
+                this._displayCollection(data[1].items, 'Your TOP artists', 'artist');                         
+            }
+            if (data[0].total + data[1].total <= 8) {
+                throw "You don't have enough favorite tracks or artists to get a list of songs of your liking";
+            } 
+
+            data = await API.get(
                 `recommendations?limit=10&market=US&seed_artists=${data[1].items[0].id},${data[1].items[1].id},${data[1].items[2].id}&seed_tracks=${data[0].items[0].id},${data[0].items[1].id}`
             );
-            data = await response.json();
             this._displayTrackList(data.tracks, 'You must like', 'artist');
         } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
+            if (typeof(err) === 'string') {
+                //затычка, вместо попапа или модального окна
+                console.log(err);
             } else {
                 console.log(err);
             }
         }
 
-        try {
-            const responses = await Promise.all(requests.map(request => API.get(request.url)));
-            const data = [];
-            for (let item of responses) {
-                if (!item.ok) {
-                    throw new ApiError(item.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname)                                      
-                }
-                data.push(await item.json());
-            }
-            data.forEach((item, index) => {
-                this._displayCollection(
-                        item.playlists?.items || item.albums?.items,
-                        requests[index]?.title || item?.message,
-                        requests[index].type
-                    );            
-            });
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        }
+        const data = await Promise.all(requests.map(request => API.get(request.url)));
+        data.forEach((item, index) => {
+            this._displayCollection(
+                    item.playlists?.items || item.albums?.items,
+                    requests[index]?.title || item?.message,
+                    requests[index].type
+            );            
+        });
     }
 
     /**

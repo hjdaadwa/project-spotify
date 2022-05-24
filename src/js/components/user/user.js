@@ -52,20 +52,8 @@ class User {
      * @public
      */
     async updateData() {
-        try {
-            const response = await API.get('me');
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-            }
-            this.data = await response.json();
-            this._updateView();  
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        }
+        this.data = await API.get('me');
+        this._updateView();  
     }
 
     /**

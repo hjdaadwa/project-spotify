@@ -4,7 +4,6 @@ import API from '../../api/api.js';
 import getUser from '../../components/user/user.js';
 import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
-import { ApiError, errorHandler } from '../../common/Errors';
 import getPlayer from '../../components/player/player';
 
 
@@ -68,28 +67,12 @@ export default class PlayList {
      * @async
      */
     async updateData() {
-        try {
-            if (this.path === 'me') {
-                const response = await API.get('me/tracks?offset=0&limit=50');
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                this.data = await response.json();
-                this._updateView();
-            } else {
-                const response = await API.get(`playlists/${this.path}`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                this.data = await response.json();
-                this._updateView();
-            }
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
+        if (this.path === 'me') {
+            this.data = await API.get('me/tracks?offset=0&limit=50');
+            this._updateView();
+        } else {
+            this.data = await API.get(`playlists/${this.path}`);
+            this._updateView();
         }
     }
 
@@ -101,22 +84,30 @@ export default class PlayList {
         if (this.path === 'me') {
             this.$imgPlaylist.src = 'https://i.ibb.co/44mk1sy/playlist-favorite.png';
             this.$imgPlaylist.hidden = false;
+
             this.$type.textContent = 'playlist';
+
             this.$name.textContent = 'Favorite tracks';
+
             this.$imgUser.src = getUser().data.images[0]?.url || getUser().data.images[1]?.url || getUser().data.images[2]?.url || 'https://i.ibb.co/51drLLx/default-user.png';
             this.$imgUser.crossOrigin = 'anonymous';
             this.$imgUser.hidden = false;
+
             this.$authorName.textContent = getUser().data.display_name;
             this.$counter.textContent = `  tracks: ${this.data.total}`;
             this.$followers.hidden = true;
+
             this.$template.querySelectorAll('.preloader').forEach((item) => {
                 item.classList.remove('preloader');
             });
+
             this.tracksView = new TrackList(this.data.items, '', 'playlist');
         } else {
             this.$imgPlaylist.src = this.data.images[0]?.url || this.data.images[1]?.url || this.data.images[2]?.url || 'https://i.ibb.co/p2bwMsX/playlist-placeholder.png';
             this.$imgPlaylist.hidden = false;
+
             this.$type.textContent = this.data.type;
+
             if (this.data.name.length >= 50) {
                 this.$name.classList.add('playlist__name_size_small');
             } else if (this.data.name.length >= 35) {
@@ -126,15 +117,19 @@ export default class PlayList {
                 this.$name.classList.add('playlist__name_size_large');
             }
             this.$name.textContent = this.data.name;
+
             this.$description.textContent = this.data.description;
             this.$authorName.textContent = this.data.owner.display_name;
             this.$counter.textContent = `tracks: ${this.data.tracks.total}`;
-            this.$followers.textContent = `followers: ${this.data.followers.total}`
+            this.$followers.textContent = `followers: ${this.data.followers.total}`;
+
             this.$template.querySelectorAll('.preloader').forEach((item) => {
                 item.classList.remove('preloader');
             });
+
             this.tracksView = new TrackList(this.data.tracks.items, '', 'playlist');
         }
+
         getColor(this.$imgPlaylist, this.$header);
         this.$container.append(this.tracksView.$template);
     }

@@ -2,7 +2,6 @@ import API from "../../api/api";
 import constants from "../../common/constans";
 import Collection from "../../components/collection/collection";
 import getUser from "../../components/user/user.js";
-import { ApiError, errorHandler } from "../../common/Errors";
 
 /**
  * Класс представляющий страницу аудиотеки. Путь "/collection".
@@ -39,54 +38,20 @@ export default class LibraryPage {
      */
     async _updateData(path) {
         if (path === 'playlists') {
-            try {
-                const response = await API.get(`users/${getUser().data.id}/playlists?limit=30&offset=0`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json();
-                this.component = new Collection(data.items, 'Playlists', 'playlist');
-                constants.app.append(this.component.$template);             
-            } catch (err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
+            const data = await API.get(`users/${getUser().data.id}/playlists?limit=30&offset=0`);
+            this.component = new Collection(data.items, 'Playlists', 'playlist');
+            constants.app.append(this.component.$template);
+
         } else if (path === 'albums') {
-            try {
-                const response = await API.get(`me/albums?limit=30&offset=0&market=US`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json();
-                const items = data.items.map(elem => elem.album);
-                this.component = new Collection(items, 'Albums', 'album');
-                constants.app.append(this.component.$template);               
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
+            const data = await API.get(`me/albums?limit=30&offset=0&market=US`);
+            const items = data.items.map(elem => elem.album);
+            this.component = new Collection(items, 'Albums', 'album');
+            constants.app.append(this.component.$template); 
+                          
         } else if (path === 'artists') {
-            try {
-                const response = await API.get(`me/following?type=artist&limit=30`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json();
-                this.component = new Collection(data.artists.items, 'Artists', 'artist');
-                constants.app.append(this.component.$template);                
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
+            const data = await API.get(`me/following?type=artist&limit=30`);
+            this.component = new Collection(data.artists.items, 'Artists', 'artist');
+            constants.app.append(this.component.$template);
         }
     }
 }

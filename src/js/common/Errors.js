@@ -61,23 +61,11 @@ export const errorHandler = async (err) => {
             constants.app.append($errorContainer);
             break;
         case 401:
-            try {
-                const response = await API.refreshToken();
-                if (response.ok) {
-                    const text = await response.text();
-                    getUser().oAuth.setAccessToken(JSON.parse(text).access_token);
-                    getRouter().goTo(err.redirectUrl);
-                    console.log(`Error "${err.statusCode},${err.name},${err.message}" was fixed`);
-                } else {
-                    throw new ApiError(response.status, 'Token not updated', err.redirectUrl);
-                }
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
+                const text = await API.refreshToken();
+                getUser().oAuth.setAccessToken(JSON.parse(text).access_token);
+                getUser().updateData();
+                getRouter().goTo(err.redirectUrl);
+                console.log(`Error "${err.statusCode},${err.name},${err.message}" was fixed`);
             break;
         case 403:
             $errorTitle.textContent = 'Bad OAuth Request';

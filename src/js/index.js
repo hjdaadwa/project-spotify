@@ -3,7 +3,7 @@ import getUser from './components/user/user.js';
 import initHandlers from './common/handlers.js';
 import getUIcontroller from './common/UIController.js';
 import getPlayer from './components/player/player.js';
-// import API from './api/api.js'
+
 
 /**
  * Создается объект класса User,

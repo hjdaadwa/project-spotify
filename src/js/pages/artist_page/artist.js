@@ -5,7 +5,7 @@ import getColor from '../../common/get_color.js';
 import TrackList from '../../components/track_list/track_list.js';
 import Collection from '../../components/collection/collection';
 import getPlayer from '../../components/player/player';
-import { ApiError, errorHandler } from '../../common/Errors';
+
 
 /**
  * Класс представляющий страницу исполнителя. Путь "/artist".
@@ -58,63 +58,17 @@ export default class Artist {
      * @async
      */
     async updateData() {
-        try {
-            const response = await API.get(`artists/${this.path}`);
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-            }
-            this.data = await response.json();
+            this.data = await API.get(`artists/${this.path}`);
             this._updateView();
-        
-            try {
-                const response = await API.get(`artists/${this.path}/top-tracks?market=ES`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json();
-                this._updateViewTracks(data);
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
-            try {
-                const response = await API.get(`artists/${this.path}/albums?include_groups=album,single&market=US&limit=25&offset=0`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json()
-                this._updateViewAlbums(data.items);           
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
-            try {
-                const response = await API.get(`artists/${this.path}/related-artists`);
-                if (!response.ok) {
-                    throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-                }
-                const data = await response.json();
-                this._updateViewArtists(data.artists);   
-            } catch(err) {
-                if (err instanceof ApiError) {
-                    errorHandler(err);
-                } else {
-                    console.log(err);
-                }
-            }
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        } 
+
+            let data = await API.get(`artists/${this.path}/top-tracks?market=ES`);
+            this._updateViewTracks(data);
+
+            data = await API.get(`artists/${this.path}/albums?include_groups=album,single&market=US&limit=25&offset=0`);
+            this._updateViewAlbums(data.items);           
+
+            data= await API.get(`artists/${this.path}/related-artists`);
+            this._updateViewArtists(data.artists);   
     }
 
     /**

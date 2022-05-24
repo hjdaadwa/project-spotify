@@ -1,7 +1,6 @@
 import constants from '../../common/constans';
 import API from '../../api/api';
 import Collection from '../../components/collection/collection';
-import { ApiError, errorHandler } from '../../common/Errors';
 
 /**
  * Класс представляющий страницу жанра. Путь "/genre".
@@ -38,20 +37,8 @@ export default class Category {
      * @param {string} path - строковый id конкретного жанра.
      */
     async _updateData(path) {
-        try {
-            const response = await API.get(`browse/categories/${path}/playlists?country=US&limit=10&offset=0`);
-            if (!response.ok) {
-                throw new ApiError(response.status, `Error when requesting "${window.location.pathname}"`, window.location.pathname);                                      
-            }
-            const data = await response.json();
+            const data = await API.get(`browse/categories/${path}/playlists?country=US&limit=10&offset=0`);
             this._renderComponent(data.playlists.items);           
-        } catch(err) {
-            if (err instanceof ApiError) {
-                errorHandler(err);
-            } else {
-                console.log(err);
-            }
-        }
     }
 
     /**

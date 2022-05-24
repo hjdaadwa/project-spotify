@@ -3,7 +3,6 @@ import trackTemplate from './track.template'
 import getRouter from '../../router/index.js';
 import getPlayer from '../player/player';
 import API from '../../api/api';
-import { ApiError, errorHandler } from '../../common/Errors';
 
 
 /**
@@ -167,22 +166,9 @@ export default class TrackList {
                 $duration.textContent = durationMs.getMinutes() + ':' + durationSec;
                 
                 if (item.preview_url) {
-                    try {
-                        API.get(`tracks/${item.id}?market=US`).then(async (response) => {
-                            if (!response.ok) {
-                                throw new ApiError(response.status, `Error when requesting "tracks/${item.id}"`, window.location.pathname);
-                            } else {
-                                const data = await response.json();
-                                audioElement.imgSrc = data.album.images[1]?.url || data.album.images[2]?.url || data.album.images[0]?.url || ''; 
-                            }                      
-                        });
-                    } catch(err) {
-                        if (err instanceof ApiError) {
-                            errorHandler(err);
-                        } else {
-                            console.log(err);
-                        }
-                    }
+                    API.get(`tracks/${item.id}?market=US`).then(async (data) => {
+                        audioElement.imgSrc = data.album.images[1]?.url || data.album.images[2]?.url || data.album.images[0]?.url || '';                     
+                    });
 
                     $component.addEventListener('click', this.addAudioHandlers.bind(this));
                     audioElement.element = $component;
