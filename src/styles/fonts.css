@@ -3,19 +3,19 @@
   font-style: normal;
   font-weight: 700;
   src: local('Circular Std Bold'),
-      url("../fonts/CircularStd-Bold.otf") format("opentype");
+      url("../assets/fonts/CircularStd-Bold.otf") format("opentype");
 }
 @font-face {
   font-family: "Circular";
   font-style: normal;
   font-weight: 400;
   src: local('Circular Std Medium'),
-      url("../fonts/CircularStd-Medium.otf") format("opentype");
+      url("../assets/fonts/CircularStd-Medium.otf") format("opentype");
 }
 @font-face {
   font-family: "Circular";
   font-style: normal;
   font-weight: 200;
   src: local('Circular Std Light'),
-      url("../fonts/CircularStd-Light.otf") format("opentype");
+      url("../assets/fonts/CircularStd-Light.otf") format("opentype");
 }
