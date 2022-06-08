@@ -1,0 +1,37 @@
+.search {
+    display: block;
+    position: relative;
+    width: 364px;
+}
+.search_active {
+    display: block;
+}
+.search__input {
+    width: 100%;
+    padding: 8px 48px;
+    border: none;
+    border-radius: 500px;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: 200;
+    color: #000000;
+    text-overflow: ellipsis;
+    outline: none;
+}
+.search__img-container {
+    position: absolute;
+    left: 12px;
+    top: 4px;
+}
+.search__clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+    background-color: transparent;
+    border: 0;
+    color: #121212;
+    padding: 0;
+}
+.search__clear-btn {
+    cursor: pointer;
+}

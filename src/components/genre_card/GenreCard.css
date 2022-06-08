@@ -1,0 +1,28 @@
+.genre-card {
+    position: relative;
+    width: 182px;
+    height: 182px;
+    background-color: #777777;
+    border-radius: 7px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.genre-card__title {
+    max-width: 100%;
+    padding: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--font-white);
+    overflow-wrap: break-word;
+}
+.genre-card__img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    transform: rotate(25deg) translate(18%,-2%);
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+    object-fit: cover;
+    object-position: center center;
+}

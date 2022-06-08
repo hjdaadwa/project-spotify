@@ -1,0 +1,111 @@
+.album {
+    height: 100%;
+}
+.album__header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 80px 35px 35px 35px;
+    padding-bottom: 110px;
+}
+.album__img-container {
+    width: 232px;
+    height: 232px;
+    min-width: 232px;
+    margin-right: 25px;
+    align-self: flex-start;
+}
+.album__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+}
+.album__info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-self: flex-end;
+    color: var(--font-white);
+}
+.album__type {
+    text-transform: uppercase;
+    font-size: 0.75;
+    font-weight: 400;
+}
+.album__name {
+    margin: 0;
+    font-size: 6rem;
+    letter-spacing: -0.04em;
+}
+.album__name_size_small {
+    font-size: 2rem;
+    margin: 10px 0px;
+}
+.album__name_size_normal {
+    font-size: 3rem;
+}
+.album__name_size_large {
+    font-size: 4rem;
+}
+.album__data {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.album__artists {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.album__artist {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-right: 5px;
+    color: var(--font-white);
+    text-decoration: none;
+}
+.album__artist:hover {
+    text-decoration: underline;
+}
+.album__year {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-right: 4px;
+}
+.album__counter {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-right: 10px;
+}
+.album__play-btn {
+    padding: 10px 35px;
+    background-color: rgba(14,13,18,.5);
+    margin-top: -76px;
+}
+
+
+
+.play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--font-green);
+}
+.play-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.play-button:active {
+    transform: scale(.95);
+}
+.play-button__img_play {
+    display: block;
+}
+.play-button__img_stop {
+    display: none;
+}

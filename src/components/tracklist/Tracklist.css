@@ -1,0 +1,33 @@
+.tracklist__content {
+    padding: 35px;
+    background-color: #141318;
+    position: relative;
+}
+.tracklist__tracks-title {
+   color: var(--font-white);
+   font-size: 1.75rem;
+   margin-bottom: 20px;
+}
+.tracklist__headline {
+    display: grid;
+    grid-template-columns: 16px 6fr 4fr 3fr 1fr;
+    grid-gap: 16px;
+    margin-bottom: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #302c3a;
+    color: var(--font-gray);
+    font-size: .75rem;
+    text-transform: uppercase;
+    font-weight: 200;
+    align-items: center;
+}
+.tracklist__col1 {
+    font-size: 1rem;
+}
+ .tracklist__col5 {
+     justify-self: end;
+     fill: var(--font-gray);
+ }
+ .tracklist__loader {
+     height: 770px;
+ }

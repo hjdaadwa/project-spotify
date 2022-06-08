@@ -1,0 +1,9 @@
+.main {
+    position: relative;
+    overflow-y: scroll;
+    grid-area: main;
+    background-color: var(--bg-main);
+}
+.main-container {
+    height: 100%;
+}

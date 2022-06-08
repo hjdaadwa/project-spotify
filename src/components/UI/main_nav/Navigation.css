@@ -1,0 +1,28 @@
+.header__navigation-list {
+    list-style-type: none;
+}
+.header__navigation-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 50px;
+    color: var(--font-gray);
+    fill: var(--font-gray);
+    transition: 0.4s;
+}
+.header__navigation-link:hover,
+.header__navigation-link_active {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 50px;
+    fill: var(--font-white);
+    color: var(--font-white);
+    transition: 0.4s;
+}
+.header__navigation-text {
+    padding-left: 20px;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: 700;
+}

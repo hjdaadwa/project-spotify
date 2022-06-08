@@ -1,0 +1,8 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    padding: 24px 24px 0 24px;
+    grid-area: header;
+    background-color: var(--bg-header);
+}

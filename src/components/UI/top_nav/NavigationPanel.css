@@ -1,0 +1,35 @@
+.nav-panel {
+    display: block;
+}
+.nav-panel_active {
+    display: block;
+}
+.nav-panel__list {
+    display: flex;
+    list-style-type: none;
+}
+.nav-panel__item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+.nav-panel__link {
+    padding: 8px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--font-white);
+}
+.nav-panel__link_active {
+    padding: 8px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--font-white);
+    background-color: var(--bg-gray);
+}
+.nav-panel__link:hover {
+    outline: 1px solid var(--bg-gray);
+}

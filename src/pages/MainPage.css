@@ -1,0 +1,17 @@
+.main-page__header {
+    padding: 80px 35px 35px 35px;
+    padding-bottom: 50px;
+    background: linear-gradient(170deg, #4c696280 0%, #000000 100%); 
+    font-size: 1.25rem;
+    color: var(--font-white);
+}
+.main-page-content {
+    background-color: #141318;
+}
+.main-page__favotite-tracks {
+    background-color: #141318;  
+    font-size: 1.5rem;
+    color: var(--font-white);
+    padding: 30px 35px 0px 35px;
+    margin-bottom: -15px;  
+}

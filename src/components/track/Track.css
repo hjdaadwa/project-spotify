@@ -1,0 +1,71 @@
+.full-track {
+    display: grid;
+    grid-template-columns: 16px 6fr 4fr 3fr 1fr;
+    grid-gap: 16px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    align-items: center;
+    font-size: .875rem;
+    font-weight: 200;
+    color: var(--font-white);
+ }
+ .full-track_inactive {
+    background-color: #63212194;
+    min-height: 60px;
+ }
+ .full-track:hover {
+    background-color: var(--bg-panel);
+    cursor: pointer;
+ }
+ .full-track_inactive:hover {
+   background-color: #63212194;
+   cursor: auto;
+}
+ .full-track_active {
+   color: var(--font-green);
+   box-shadow: inset 0px 0px 2px 1px rgba(29,185,84,0.39);
+ }
+ .full-track__card {
+    display: flex;
+    align-items: center;
+ }
+ .full-track__img {
+    margin-right: 16px;
+    object-fit: cover;
+    object-position: center center;
+ }
+ .full-track__info {
+    display: flex;
+    flex-direction: column;
+ }
+ .full-track__name {
+    margin-bottom: 3px;
+    font-size: 1rem;
+    color: var(--font-white);
+    color: inherit;
+ }
+ .full-track__col4 {
+    color: var(--font-gray);
+ }
+ .full-track__col5 {
+    justify-self: end;
+    color: var(--font-gray);
+    color: inherit;
+ }
+ .full-track__artist {
+    text-decoration: none;
+    color: var(--font-gray);
+    margin-right: 5px;
+ }
+ .full-track__artist:hover {
+    color: var(--font-white);
+    text-decoration: underline;
+ }
+ .full-track__col3-link {
+   text-decoration: none;
+   color: var(--font-gray);
+ }
+ .full-track__col3-link:hover {
+   color: var(--font-white);
+   text-decoration: underline;
+ }

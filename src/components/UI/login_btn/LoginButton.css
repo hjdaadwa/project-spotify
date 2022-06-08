@@ -1,0 +1,22 @@
+.authorization-btn {
+    display: inline-block;
+    padding: 8px 34px;
+    border: none;
+    border-radius: 500px;
+    font-size: 0.875rem;
+    letter-spacing: 1.76px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: var(--font-white);
+    color: var(--font-black);
+    cursor: pointer;
+}
+.authorization-btn:hover {
+    transform: scale(1.1);
+}
+.authorization-btn:active {
+    transform: scale(1);
+}
