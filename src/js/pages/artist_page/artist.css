@@ -1,0 +1,26 @@
+.artist__img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 232px;
+    height: 232px;
+    min-width: 232px;
+    margin-right: 25px;
+    align-self: flex-start;
+    border-radius: 50%;
+}
+.artist__img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center center;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+}
+.artist__tracklist-title {
+    margin: 0px 0px 0px 35px;
+    padding-top: 40px;
+    color: var(--font-white);
+    background-color: #141318;
+    font-size: 1.7rem;
+}

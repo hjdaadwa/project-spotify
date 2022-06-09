@@ -1,0 +1,4 @@
+<div class="user__img-container">
+    <img class="user__img" src="" alt="User avatar" width="28" height="28">
+</div>
+<span class="user__name"></span>
