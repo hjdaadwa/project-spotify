@@ -31,7 +31,7 @@ function AuthUserProvider({children}) {
 
         async function getUserInfo() {
             try {
-                const response = await API.get('me');
+                let response = await API.get('me');
 
                 if (response.status === 401) {
                     const result = await API.refreshToken();
