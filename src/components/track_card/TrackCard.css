@@ -1,0 +1,32 @@
+.current-track {
+    max-height: 85px;
+   
+    
+    display: flex;
+    align-items: center;
+    width: 300px;
+    flex-wrap: nowrap;
+}
+.current-track__img-container {
+    margin-right: 20px;
+}
+.current-track__text-container {
+    max-height: 85px;
+    overflow: hidden;
+    text-align: start;
+}
+.current-track__name {
+    text-overflow: clip;
+    font-size: .725rem;
+    color: var(--font-white);
+    font-weight: 200;
+    letter-spacing: 0.125rem;
+    line-height: 1rem;
+}
+.current-track__author {
+    font-size: 0.688rem;
+    color: var(--font-gray);
+    font-weight: 400;
+    letter-spacing: 0.125rem;
+    line-height: 1rem;
+}

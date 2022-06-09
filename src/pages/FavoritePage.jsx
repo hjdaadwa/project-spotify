@@ -10,6 +10,7 @@ import API from "../services/api";
 
 import useColorThief from "use-color-thief";
 import './FavoritePage.css';
+import PlayButton from "../components/UI/play_button/PlayButton";
 
 
 
@@ -21,7 +22,7 @@ function FavoritePage() {
     const playlist = useQuery(API.get.bind(API), 'me/tracks?offset=0&limit=50');
     const {user} = useContext(AuthUserContext);
     const {color} = useColorThief('https://i.ibb.co/44mk1sy/playlist-favorite.png', {format: 'hex', colorCount: 0});
-    
+ 
     if (playlist.error) {
         return (
             <article className="playlist">
@@ -64,11 +65,13 @@ function FavoritePage() {
                 </div>
             </div>
             <div className="playlist__play-btn">
-                <div className="play-button">
-                        {/* ДОДЕЛАТЬ */}
-                    <svg className="play-button__img play-button__img_play" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                    <svg className="play-button__img play-button__img_stop" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M5.7 3a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7H5.7zm10 0a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7h-2.6z"></path></svg>
-                </div>
+                <PlayButton 
+                    tracklistID='me' 
+                    tracklist={playlist.response.items.map((item) => {
+                        const {added_at, track} = item;
+                        return {added_at, ...track};
+                    })}
+                />
             </div>
             <div className="playlist__content-container">
                 <Tracklist 
@@ -77,6 +80,7 @@ function FavoritePage() {
                         const {added_at, track} = item;
                         return {added_at, ...track};
                     })} 
+                    tracklistID='me'
                     title=''
                     isLoading={playlist.isLoading}
                     error={playlist.error} 

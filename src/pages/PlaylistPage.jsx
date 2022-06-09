@@ -10,6 +10,7 @@ import API from "../services/api";
 
 import useColorThief from "use-color-thief";
 import './PlaylistPage.css'
+import PlayButton from "../components/UI/play_button/PlayButton";
 
 
 /**
@@ -27,7 +28,7 @@ function PlaylistPage() {
         'https://i.ibb.co/p2bwMsX/playlist-placeholder.png', 
         {format: 'hex', colorCount: 0}
     );
-    
+
     if (playlist.error) {
         return (
             <article className="playlist">
@@ -72,9 +73,14 @@ function PlaylistPage() {
             </div>
             <div className="playlist__play-btn">
                 <div className="play-button">
-                    {/* dodelat */}
-                    <svg className="play-button__img play-button__img_play" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                    <svg className="play-button__img play-button__img_stop" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M5.7 3a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7H5.7zm10 0a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7h-2.6z"></path></svg>
+                    <PlayButton 
+                        tracklistID={playlist.response.id} 
+                        tracklist={playlist.response.tracks.items.map((item) => {
+                            const {added_at, track} = item;
+                            return {added_at, ...track};
+                        }
+                        )}
+                    />
                 </div>
             </div>
             <div className="playlist__content-container">
@@ -85,6 +91,7 @@ function PlaylistPage() {
                             return {added_at, ...track};
                         }
                     )}
+                    tracklistID={playlist.response.id}
                     title=''
                 />
             </div>

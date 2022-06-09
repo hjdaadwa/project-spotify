@@ -2,8 +2,11 @@ import Track from '../track/Track';
 import Loader from '../UI/loader/Loader';
 import Error from '../error/Error';
 
+import { usePlayer } from '../../contexts/player/usePlayer';
+
 import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg';
 import './Tracklist.css';
+
 
 
 /**
@@ -11,13 +14,15 @@ import './Tracklist.css';
  * @param {Object} props
  * @param {string} props.type - тип треклиста = котекст контента. 'artist' | 'album' | 'playlist'
  * @param {Object[]} tracklistData - массив треков
+ * @param {string} tracklistID - id треклиста
  * @param {boolean} [isLoading=false] - состояние загрузки данных
  * @param {string} [title=''] - заголовок треклиста
  * @param {Object} [error=null] - ошибка загрузки. Передается, если нужно, чтобы компонент сам обрабатывал ее, а не родительский компонент
  * @returns {JSX.Element}
  */
-function Tracklist({type, tracklistData, isLoading = false, title='', error = null}) {
-
+function Tracklist({type, tracklistData, tracklistID, isLoading = false, title='', error = null}) {
+    const {load, tracklist} = usePlayer();
+ 
     if (error) {
         return (
             <div className='tracklist__loader'>
@@ -60,6 +65,7 @@ function Tracklist({type, tracklistData, isLoading = false, title='', error = nu
                                     trackData={item} 
                                     order={index + 1}
                                     key={item.id}
+                                    onClick={()=> load(item.id, {id: tracklistID || item.id, tracks: tracklistData})}
                                 />
                             )
                         })

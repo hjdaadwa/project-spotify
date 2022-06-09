@@ -25,7 +25,6 @@ function AuthUserProvider({children}) {
     }
     const [isAuth, setIsAuth] = useState(initAuthState);
     const [user, setUser] = useState(null);
-    // ОШИБКИ
 
     useEffect(async () => {
 

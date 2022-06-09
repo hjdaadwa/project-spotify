@@ -9,6 +9,7 @@ import './Header.css'
  * @returns  {JSX.Element}
  */
 function Header() {
+
 return (
     <header className="header" aria-label="Left panel and main menu">
         <Logotype/>

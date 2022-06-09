@@ -12,6 +12,7 @@ import Title from "../components/title/Title";
 import useColorThief from "use-color-thief";
 import Loader from "../components/UI/loader/Loader";
 import './AlbumPage.css';
+import PlayButton from "../components/UI/play_button/PlayButton";
 
 
 /**
@@ -43,7 +44,14 @@ function AlbumPage() {
         <article className='album'>
             <div className="album__header" style={{background: color}}>
                 <div className="album__img-container">
-                    <img className="album__img" src={albumData.images[1]?.url || albumData.images[0]?.url} alt="Album image" width="232" height="232" crossOrigin="anonymous" />  
+                    <img 
+                        className="album__img" 
+                        src={albumData.images[1]?.url || albumData.images[0]?.url} 
+                        alt="Album image" 
+                        width="232" 
+                        height="232" 
+                        crossOrigin="anonymous" 
+                    />  
                 </div>
                 <div className="album__info">
                     <p className="album__type">{albumData.album_type}</p>
@@ -85,16 +93,16 @@ function AlbumPage() {
                 </div>
             </div>
             <div className="album__play-btn">
-                <div className="play-button">
-                    {/* DODELAT */}
-                    <svg className="play-button__img play-button__img_play" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                    <svg className="play-button__img play-button__img_stop" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M5.7 3a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7H5.7zm10 0a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7h-2.6z"></path></svg>
-                </div>
+                <PlayButton 
+                    tracklistID={albumData.id} 
+                    tracklist={albumData.tracks.items}
+                />
             </div>
             <div className="album__content-container">
                 <Tracklist 
                     type='album' 
                     tracklistData={albumData.tracks.items}
+                    
                     title='' 
                 />
             </div>

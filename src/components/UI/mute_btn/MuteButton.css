@@ -1,0 +1,10 @@
+.music-player__volume-bar-btn {
+    margin-right: 10px;
+    background: transparent;
+    border: none;
+    fill: var(--font-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

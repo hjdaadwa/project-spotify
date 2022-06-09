@@ -12,6 +12,7 @@ import Error from '../components/error/Error';
 
 import useColorThief from 'use-color-thief';
 import './ArtistPage.css';
+import PlayButton from '../components/UI/play_button/PlayButton';
 
 
 /**
@@ -31,7 +32,7 @@ function ArtistPage() {
         'https://i.ibb.co/f9sHgr9/default-artist.png', 
         {format: 'hex', colorCount: 0}
     );
-    
+
     if (artist.error) {
         return (
             <article className="artist">
@@ -73,17 +74,17 @@ function ArtistPage() {
                 </div>
             </div>
             <div className="artist__play-btn">
-                <div className="play-button">
-                    {/* DODELAT */}
-                    <svg className="play-button__img play-button__img_play" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                    <svg className="play-button__img play-button__img_stop" role="img" height="28" width="28" viewBox="0 0 24 24"><path d="M5.7 3a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7H5.7zm10 0a.7.7 0 00-.7.7v16.6a.7.7 0 00.7.7h2.6a.7.7 0 00.7-.7V3.7a.7.7 0 00-.7-.7h-2.6z"></path></svg>
-                </div>
+                <PlayButton 
+                    tracklistID={id} 
+                    tracklist={topTracks.response?.tracks}
+                />
             </div>
             <div className="artist__content-container">
                 <div className="artist__tracklist-container">       
                     <Tracklist 
                         type='artist' 
                         tracklistData={topTracks.response?.tracks}
+                        tracklistID={id}
                         title='Popular tracks'
                         isLoading={topTracks.isLoading}
                         error={topTracks.error}

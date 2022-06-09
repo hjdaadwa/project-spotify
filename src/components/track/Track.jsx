@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { usePlayer } from "../../contexts/player/usePlayer";
 
 import { convertMsToMTime } from "../../services/helpers";
 
@@ -20,8 +21,8 @@ import './Track.css';
  * @param {number} order - порядковый номер
  * @returns {JSX.Element}
  */
-function Track({type, trackData, order}) {
-
+function Track({type, trackData, order, onClick}) {
+    const {trackID} = usePlayer();
     if (!trackData?.name || !trackData?.duration_ms) {
         return (
             <div className="full-track full-track_inactive">
@@ -34,7 +35,18 @@ function Track({type, trackData, order}) {
         )
     }
     return (
-        <div className={trackData.preview_url ? "full-track" : "full-track full-track_inactive"}>
+        <div 
+            className={
+                !trackData.preview_url ? 
+                    "full-track full-track_inactive" : 
+                    trackID === trackData.id ?
+                    "full-track full-track_active" :
+                    "full-track"
+            }
+            onClick={
+                trackData.preview_url ? onClick : null
+            }
+        >
             <div className="full-track__col1">{order}</div>
             <div className="full-track__col2">
                 <div className="full-track__card">
@@ -65,6 +77,7 @@ function Track({type, trackData, order}) {
                                             className='full-track__artist' 
                                             to={`/artist/${artist.id}`} 
                                             key={artist.id}
+                                            onClick={(event) => {event.stopPropagation()}}
                                         >
                                                 {artist.name}
                                         </NavLink>
@@ -81,6 +94,7 @@ function Track({type, trackData, order}) {
                         <NavLink 
                             className="full-track__col3-link" 
                             to={`/album/${trackData.album.id}`}
+                            onClick={(event) => {event.stopPropagation()}}
                         >
                                 {trackData.album.name}
                         </NavLink>

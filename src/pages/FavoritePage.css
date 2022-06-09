@@ -73,28 +73,3 @@
     background-color: rgba(14,13,18,.5);
     margin-top: -76px;
 }
-
-
-
-.play-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: var(--font-green);
-}
-.play-button:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-.play-button:active {
-    transform: scale(.95);
-}
-.play-button__img_play {
-    display: block;
-}
-.play-button__img_stop {
-    display: none;
-}
