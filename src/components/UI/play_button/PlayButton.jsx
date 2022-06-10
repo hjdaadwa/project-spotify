@@ -24,7 +24,7 @@ function PlayButton({tracklistID, tracklist}) {
                         onClick={() => {
                             const index = tracklist.findIndex(item => item.preview_url);
                             if (index !== -1) {
-                                load(tracklist[0].id, {id: tracklistID || tracklist[0].id, tracks: tracklist})
+                                load(tracklist[index].id, {id: tracklistID || tracklist[index].id, tracks: tracklist})
                             }
                         }} 
                     >
