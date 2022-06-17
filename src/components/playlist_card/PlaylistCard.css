@@ -1,3 +1,6 @@
+.playlist__card-link {
+    text-decoration: none;
+}
 .playlist-card {
     width: 182px;
     padding: 16px;

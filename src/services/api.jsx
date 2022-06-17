@@ -64,7 +64,6 @@ class API {
         }
         localStorage.setItem('accessToken', hashParams.access_token);
         localStorage.setItem('refreshToken', hashParams.refresh_token);
-        window.location = window.location.href.split('#')[0];
     }
 }
 

@@ -4,6 +4,8 @@ import Collection from "../components/collection/Collection";
 import Tracklist from "../components/tracklist/Tracklist";
 import Loader from "../components/UI/loader/Loader";
 
+import useRequireAuth from "../hook/useRequireAuth";
+
 import useQuery from "../hook/useQuery";
 import API from "../services/api";
 
@@ -15,6 +17,7 @@ import './SearchPage.css';
  * @returns {JSX.Element}
  */
 function SearchPage() {
+    useRequireAuth();
     const match = useMatch('/search/:query');
     
     const {response: searchData, errorSearch} = useQuery(API.get.bind(API), `search?q=${match.params.query}&type=track%2Cartist%2Cplaylist%2Calbum&market=US&limit=10&offset=0`);

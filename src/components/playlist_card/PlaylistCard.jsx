@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './PlaylistCard.css';
 
@@ -17,35 +17,36 @@ import './PlaylistCard.css';
  * @returns {JSX.Element}
  */
 function PlaylistCard({playlistData}) {
-    const navigate = useNavigate();
 
     return (
-        <article className="collection__card playlist-card" onClick={() => navigate(`/playlist/${playlistData.id}`)}>
-            <div className="playlist-card__img-container">
-                <img 
-                    className="playlist-card__img" 
-                    src={
-                        playlistData.images[1]?.url ||
-                        playlistData.images[2]?.url ||
-                        playlistData.images[0]?.url ||
-                        'https://i.ibb.co/17ybWq4/default-playlist.png'
-                    } 
-                    alt="Playlist image" 
-                    width="150" 
-                    height="150"
-                />
-            </div>
-            <div className="playlist-card__text">
-                <h3 className="playlist-card__title">{playlistData.name}</h3>
-                <p className="playlist-card__description">
-                    {
-                        playlistData.description ? 
-                        playlistData.description : 
-                        `Owner: ${playlistData.owner.display_name}`
-                    }
-                </p>
-            </div>
-        </article>
+        <Link className='playlist__card-link' to={`/playlist/${playlistData.id}`}>
+            <article className="collection__card playlist-card" >
+                <div className="playlist-card__img-container">
+                    <img 
+                        className="playlist-card__img" 
+                        src={
+                            playlistData.images[1]?.url ||
+                            playlistData.images[2]?.url ||
+                            playlistData.images[0]?.url ||
+                            'https://i.ibb.co/17ybWq4/default-playlist.png'
+                        } 
+                        alt="Playlist image" 
+                        width="150" 
+                        height="150"
+                    />
+                </div>
+                <div className="playlist-card__text">
+                    <h3 className="playlist-card__title">{playlistData.name}</h3>
+                    <p className="playlist-card__description">
+                        {
+                            playlistData.description ? 
+                            playlistData.description : 
+                            `Owner: ${playlistData.owner.display_name}`
+                        }
+                    </p>
+                </div>
+            </article>
+        </Link>
     )
 }
 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { usePlayer } from '../../contexts/player/usePlayer';
 import TrackCard from '../track_card/TrackCard';
 import MuteButton from '../UI/mute_btn/MuteButton';
@@ -14,9 +15,43 @@ import './Player.css'
  * @returns {JSX.Element}
  */
 function Player() {
-    const {isDisplayed, isPlaying, trackIndex, tracklist, muted, currentTime, togglePlayingState, next, prev, mute, changeVolume, changePlaybackPosition} = usePlayer();
+    const {player, isPlaying, trackIndex, tracklist, togglePlayingState, changeTrackIndex} = usePlayer();
 
-    if (!isDisplayed) {
+    const [volume, setVolume] = useState(0.1);
+    const [muted, setMuted] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    player.current.ontimeupdate = () => {
+        setCurrentTime(Math.round(player.current.currentTime));
+    }
+
+    const next = () => {
+        changeTrackIndex(trackIndex + 1);
+    }
+    const prev = () => {
+        if (tracklist.tracks[trackIndex - 1]) {
+            changeTrackIndex(trackIndex - 1);
+        }
+    }
+    const changePlaybackPosition = (value) => {
+        player.current.currentTime = value;
+    }
+    const mute = () => {
+        muted ? setMuted(false) : setMuted(true);
+    }
+    const changeVolume = (value) => {
+        setVolume(value);
+    }
+
+    useEffect(() => {
+        player.current.volume = volume;
+    }, [volume])
+
+    useEffect(() => {
+        muted ? player.current.volume = 0 : player.current.volume = volume;
+    }, [muted])
+
+    if (trackIndex === null) {
         return null;
     }
 

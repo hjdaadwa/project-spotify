@@ -6,6 +6,7 @@ import Recomendations from "../components/recomendations/Recomendations";
 import Loader from "../components/UI/loader/Loader";
 
 import AuthUserContext from "../contexts/auth/AuthUserContext";
+import useRequireAuth from "../hook/useRequireAuth";
 
 import useQuery from "../hook/useQuery";
 import API from "../services/api";
@@ -18,8 +19,9 @@ import './MainPage.css';
  * @returns {JSX.Element}
  */
 function MainPage() {
+    useRequireAuth();
     const {user} = useContext(AuthUserContext);
-
+    
     const topTracks = useQuery(API.get.bind(API), 'me/top/tracks?time_range=medium_term&limit=10&offset=0');
     const topArtists = useQuery(API.get.bind(API), 'me/top/artists?limit=10&offset=0');
     const news1 = useQuery(API.get.bind(API), 'browse/new-releases?country=KZ&limit=20&offset=0');

@@ -5,6 +5,7 @@ import Tracklist from "../components/tracklist/Tracklist";
 import Loader from "../components/UI/loader/Loader";
 import Error from "../components/error/Error";
 
+import useRequireAuth from "../hook/useRequireAuth";
 import useQuery from "../hook/useQuery";
 import API from "../services/api";
 
@@ -18,6 +19,7 @@ import PlayButton from "../components/UI/play_button/PlayButton";
  * @returns {JSX.Element}
  */
 function PlaylistPage() {
+    useRequireAuth();
     const {id} = useParams();
     const playlist = useQuery(API.get.bind(API), `playlists/${id}`);
 

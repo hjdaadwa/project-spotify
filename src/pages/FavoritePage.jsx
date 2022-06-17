@@ -4,6 +4,7 @@ import Tracklist from "../components/tracklist/Tracklist";
 import Loader from "../components/UI/loader/Loader";
 import Error from "../components/error/Error";
 
+import useRequireAuth from "../hook/useRequireAuth";
 import AuthUserContext from "../contexts/auth/AuthUserContext";
 import useQuery from "../hook/useQuery";
 import API from "../services/api";
@@ -19,6 +20,7 @@ import PlayButton from "../components/UI/play_button/PlayButton";
  * @returns {JSX.Element}
  */
 function FavoritePage() {
+    useRequireAuth();
     const playlist = useQuery(API.get.bind(API), 'me/tracks?offset=0&limit=50');
     const {user} = useContext(AuthUserContext);
     const {color} = useColorThief('https://i.ibb.co/44mk1sy/playlist-favorite.png', {format: 'hex', colorCount: 0});

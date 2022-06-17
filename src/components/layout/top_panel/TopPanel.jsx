@@ -28,19 +28,30 @@ function TopPanel() {
                     {
                         searchMatch ? 
                             <SearchInput query={searchMatch.params['*']} /> : 
-                            collectionMatch ? 
-                                <NavigationPanel /> : 
-                                null          
+                            null
+                    }
+                    {      
+                        collectionMatch ? 
+                            <NavigationPanel /> : 
+                            null          
                     }
                 </div>
             </div>
             <div className="top-panel__authorization">
                 {
-                    (isAuth && user) ? 
+                    isAuth && user ? 
                         <User userData={user} /> : 
-                        isAuth && !user ? 
-                            <div></div> : 
-                            <LoginButton />        
+                        null
+                }
+                {
+                    isAuth && !user ?
+                        <div>...</div> : 
+                        null 
+                }
+                {
+                    !isAuth ?
+                        <LoginButton /> :
+                        null        
                 }
             </div>
         </section>

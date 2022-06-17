@@ -1,19 +1,20 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import RequireAuth from './hoc/RequireAuth';
+// import RequireAuth from './hoc/RequireAuth';
 
 import Layout from './components/layout/Layout';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
 import FavoritePage from './pages/FavoritePage';
 import PlaylistPage from './pages/PlaylistPage';
-import CollectionPage from './pages/CollectionPage';
 import LoginPage from './pages/LoginPage';
 import AlbumPage from './pages/AlbumPage';
 import ArtistPage from './pages/ArtistPage';
 import GenresPage from './pages/GenresPage';
 import GenrePage from './pages/GenrePage';
-import Loader from './components/UI/loader/Loader';
+import CollectionPlaylistsPage from './pages/CollectionPlaylistsPage';
+import CollectionArtistsPage from './pages/CollectionArtistsPage';
+import CollectionAlbumsPage from './pages/CollectionAlbumsPage';
 
 import './styles/App.css'
 
@@ -30,78 +31,29 @@ function App() {
     <>
       <Routes>
           <Route path='/' element={<Layout />}>
-            <Route index element={
-              <RequireAuth>
-                <MainPage />
-              </RequireAuth>
-            } />
+            <Route index element={<MainPage />} />
 
             <Route path='search'>
-              <Route index element={
-                <RequireAuth>
-                  <GenresPage />
-                </RequireAuth>
-              } />
-              <Route path=':query' element={
-                <RequireAuth>
-                  <SearchPage />
-                </RequireAuth>
-              } />
+              <Route index element={<GenresPage />} />
+              <Route path=':query' element={<SearchPage />} />
             </Route>
             
             <Route path='collection'>
-              <Route index element={
-                <RequireAuth>
-                  <Navigate to="playlists" />
-                </RequireAuth>
-              } />
-              <Route path='playlists' element={
-                <RequireAuth>
-                    <CollectionPage />
-                </RequireAuth>
-              } />
-              <Route path='artists' element={
-                <RequireAuth>
-                  <CollectionPage />
-                </RequireAuth>
-              } />
-              <Route path='albums' element={
-                <RequireAuth>
-                  <CollectionPage />
-                </RequireAuth>
-              } />
+              <Route index element={<Navigate to="playlists" />} />
+              <Route path='playlists' element={<CollectionPlaylistsPage />} />
+              <Route path='artists' element={<CollectionArtistsPage />} />
+              <Route path='albums' element={<CollectionAlbumsPage />} />
             </Route>
 
-            <Route path='playlist/me' element={
-              <RequireAuth>
-                <FavoritePage />
-              </RequireAuth>
-            } />
-            <Route path='playlist/:id' element={
-              <RequireAuth>
-                <PlaylistPage />
-              </RequireAuth>
-            } />
+            <Route path='playlist/me' element={<FavoritePage />} />
+            <Route path='playlist/:id' element={<PlaylistPage />} />
 
-            <Route path='album/:id' element={
-              <RequireAuth>
-                <AlbumPage />
-              </RequireAuth>
-            } />
+            <Route path='album/:id' element={<AlbumPage />} />
 
-            <Route path='artist/:id' element={
-              <RequireAuth>
-                <ArtistPage />
-              </RequireAuth>
-            } />
+            <Route path='artist/:id' element={<ArtistPage />} />
 
-            <Route path='genre/:id' element={
-              <RequireAuth>
-                <GenrePage />
-              </RequireAuth>
-            } />
+            <Route path='genre/:id' element={<GenrePage />} />
 
-            <Route path='loader' element={<Loader/>} />
             <Route path='login' element={<LoginPage />} />
             {/* todo */}
             <Route path='*' element={<div>NOT FOUND PAGE</div>} />

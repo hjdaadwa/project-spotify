@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useMatch } from 'react-router-dom';
 
 import AuthUserContext from '../contexts/auth/AuthUserContext';
-
+import useRequireAuth from "../hook/useRequireAuth";
 import useQuery from '../hook/useQuery';
 import API from '../services/api';
 
@@ -16,9 +16,10 @@ import './CollectionPage.css'
  * @returns {JSX.Element}
  */
 function CollectionPage() {
+    useRequireAuth();
     const {params: {path}} = useMatch('/collection/:path');
     const {user} = useContext(AuthUserContext);
-    const playlists = useQuery(API.get.bind(API), `users/${user.id}/playlists?limit=30&offset=0`);
+    const playlists = useQuery(API.get.bind(API), `users/${user?.id}/playlists?limit=30&offset=0`);
     const albums = useQuery(API.get.bind(API), `me/albums?limit=30&offset=0&market=US`);
     const artists = useQuery(API.get.bind(API), `me/following?type=artist&limit=30`);
 

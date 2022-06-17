@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import useRequireAuth from "../hook/useRequireAuth";
 import useQuery from '../hook/useQuery';
 import API from '../services/api';
 
@@ -20,6 +21,7 @@ import PlayButton from '../components/UI/play_button/PlayButton';
  * @returns {JSX.Element}
  */
 function ArtistPage() {
+    useRequireAuth();
     const {id} = useParams();
     const artist = useQuery(API.get.bind(API), `artists/${id}`);
     const topTracks = useQuery(API.get.bind(API), `artists/${id}/top-tracks?market=ES`);

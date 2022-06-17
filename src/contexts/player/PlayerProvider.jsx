@@ -1,46 +1,29 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import PlayerContext from "./PlayerContext";
 
 
-
 function PlayerProvider({children}) {
-    const player = useState(new Audio())[0];
-
-    const [isDisplayed, setIsDisplayed] = useState(false);
+    const player = useRef(new Audio());
 
     const [trackID, setTrackID] = useState('');
     const [trackIndex, setTrackIndex] = useState(null);
     const [tracklist, setTracklist] = useState({id: null, tracks: []});
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-
-    const [volume, setVolume] = useState(0.1);
-    const [muted, setMuted] = useState(false);
-
-    useEffect(() => {
-        player.volume = volume;
-    }, [volume, player])
-
-    useEffect(() => {
-        muted ? player.volume = 0 : player.volume = volume;
-    }, [muted, player])
-
+    
     useEffect(() => {
         if (tracklist.tracks.length !== 0) {
-                player.src = tracklist.tracks[trackIndex].preview_url;
+                player.current.src = tracklist.tracks[trackIndex].preview_url;
                 setTrackID(tracklist.tracks[trackIndex].id);
         }
     }, [trackIndex, tracklist.tracks]);
 
     useEffect(() => {
-        isPlaying ? player.play() : player.pause();
+        isPlaying ? player.current.play() : player.current.pause();
     });
 
-    player.ontimeupdate = () => {
-        setCurrentTime(Math.round(player.currentTime));
-    }
-    player.onended = () => {
-        next();
+
+    player.current.onended = () => {
+        changeTrackIndex(trackIndex + 1);
     }
 
     const load = (newTrackID, newTracklist) => {
@@ -48,7 +31,6 @@ function PlayerProvider({children}) {
             console.log('Empty tracklist or trackID');
             return;
         }
-        display();
 
         if (trackID === newTrackID) {
             togglePlayingState();
@@ -69,51 +51,27 @@ function PlayerProvider({children}) {
             setIsPlaying(true);
         }   
     }
-
-    const togglePlayingState = () => isPlaying ? setIsPlaying(false) : setIsPlaying(true);
-    const next = () => {
-        if (tracklist.tracks[trackIndex + 1]) {
-            setTrackIndex(trackIndex + 1);
+    const changeTrackIndex = (index) => {
+        if (tracklist.tracks[index]) {
+            setTrackIndex(index);
         } else {
             setTrackIndex(0);
             setIsPlaying(false);
         }
     }
-    const prev = () => {
-        if (tracklist.tracks[trackIndex - 1]) {
-            setTrackIndex(trackIndex - 1);
-        }
-    }
-    const display = () => {
-        if (!isDisplayed) setIsDisplayed(true);
-    }
-    const mute = () => {
-        muted ? setMuted(false) : setMuted(true);
-    }
-    const changeVolume = (value) => {
-        setVolume(value);
-    }
-    const changePlaybackPosition = (value) => {
-        player.currentTime = value;
-    }
+    const togglePlayingState = () => isPlaying ? setIsPlaying(false) : setIsPlaying(true);
 
     return (
         <PlayerContext.Provider 
             value={{
-                    isDisplayed, 
+                    player,
                     isPlaying, 
                     trackID, 
                     tracklist, 
-                    trackIndex, 
-                    muted,
-                    currentTime, 
+                    trackIndex,  
                     load, 
                     togglePlayingState, 
-                    next, 
-                    prev, 
-                    mute, 
-                    changeVolume,
-                    changePlaybackPosition
+                    changeTrackIndex
                 }}
         >
             {children}

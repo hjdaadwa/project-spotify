@@ -17,7 +17,7 @@ function AuthUserProvider({children}) {
         if (window.location.hash) {
             API.parseTokens();
         }
-        if (localStorage.getItem('accessToken')) {
+        if (localStorage.getItem('accessToken') && localStorage.getItem('accessToken') !== '') {
             return true;
         } else {
             return false;      
@@ -25,9 +25,9 @@ function AuthUserProvider({children}) {
     }
     const [isAuth, setIsAuth] = useState(initAuthState);
     const [user, setUser] = useState(null);
+    const [abort, setAbort] = useState();
 
     useEffect(async () => {
-
         async function getUserInfo() {
             try {
                 let response = await API.get('me');

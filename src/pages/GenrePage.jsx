@@ -4,6 +4,7 @@ import Collection from '../components/collection/Collection';
 import Error from '../components/error/Error';
 import Loader from '../components/UI/loader/Loader';
 
+import useRequireAuth from "../hook/useRequireAuth";
 import useQuery from '../hook/useQuery';
 import API from '../services/api';
 
@@ -15,6 +16,7 @@ import './GenrePage.css';
  * @returns {JSX.Element}
  */
 function GenrePage() {
+    useRequireAuth();
     const {id} = useParams();
     const {state} = useLocation();
     const {response: genreData, error} = useQuery(API.get.bind(API), `browse/categories/${id}/playlists?country=US&limit=14&offset=0`);

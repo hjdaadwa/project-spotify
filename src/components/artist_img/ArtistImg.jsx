@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
-
+import useQuery from "../../hook/useQuery";
 import API from "../../services/api";
 
 import './ArtistImg.css'
 
 
 function ArtistImg({id, ...props}) {
-    const [src, setSrc] = useState('https://i.ibb.co/L8KvKX5/default-artist-card.png');
-
-    useEffect(async () => {
-        if (id) {
-            const response = await API.get(`artists/${id}`);
-            const artistData = await response.json();
-            setSrc(artistData.images[2].url || artistData.images[1].url || artistData.images[0].url)
-        }
-    }, [id]);
-
+    const artist = useQuery(API.get.bind(API), `artists/${id}`);
+    
     if (id) {
         return (
-            <img  src={src} {...props} />
+            <img 
+                src={artist.response?.images[2]?.url || artist.response?.images[1]?.url || artist.response?.images[0]?.url || 'https://i.ibb.co/L8KvKX5/default-artist-card.png'} 
+                {...props} 
+            />
         )
     } else {
         return (

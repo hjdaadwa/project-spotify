@@ -2,6 +2,7 @@ import Error from "../components/error/Error";
 import GenreCard from "../components/genre_card/GenreCard";
 import Loader from "../components/UI/loader/Loader";
 
+import useRequireAuth from "../hook/useRequireAuth";
 import useQuery from "../hook/useQuery";
 import API from "../services/api";
 
@@ -14,6 +15,7 @@ import './GenresPage.css';
  * @returns {JSX.Element}
  */
 function GenresPage() {
+    useRequireAuth();
     const {response: genresData, error} = useQuery(API.get.bind(API), 'browse/categories?country=US&limit=28&offset=0');
 
     if (error) {
