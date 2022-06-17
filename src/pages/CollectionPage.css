@@ -1,0 +1,17 @@
+.collection-page {
+    height: 100%;
+}
+.collection-page-content {
+    margin-top: 80px;
+}
+.collection-page__error {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collection-page__error-description {
+    margin-top: 150px;
+    margin-right: 150px;
+}

@@ -1,0 +1,13 @@
+.music-player__next-btn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    fill: var(--font-gray);
+    cursor: pointer;
+}
+.music-player__next-btn:hover {
+    fill: var(--font-white);
+}
+.music-player__next-btn:active {
+    fill: var(--font-gray);
+}

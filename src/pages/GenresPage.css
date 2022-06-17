@@ -1,0 +1,23 @@
+.genres-page {
+    height: 100%;
+}
+.genres-page__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 30px 0px 0px 35px;
+    margin-top: 80px;
+    margin-bottom: 25px;
+}
+.genres-page__title {
+    color: var(--font-white);
+    font-size: 1.5rem;
+}
+.genres-page__content {
+    width: 100%;
+    min-height: 100%;
+    padding: 30px 0px 0px 35px;
+    display: flex;
+    flex-wrap: wrap;
+}

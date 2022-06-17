@@ -1,0 +1,75 @@
+.playlist {
+    height: 100%;
+}
+.playlist__header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 80px 35px 35px 35px;
+    padding-bottom: 110px;
+}
+.plalist__img-container {
+    width: 232px;
+    height: 232px;
+    min-width: 232px;
+    margin-right: 25px;
+    align-self: flex-start;
+}
+.playlist__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+}
+.playlist__info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-self: flex-end;
+    color: var(--font-white);
+}
+.playlist__type {
+    text-transform: uppercase;
+    font-size: 0.75;
+    font-weight: 400;
+}
+.playlist__name {
+    margin: 0;
+    font-size: 6rem;
+    letter-spacing: -0.04em;
+}
+.playlist__description {
+    color: rgba(255,255,255,.7);
+    font-weight: 200;
+    margin-bottom: 8px;
+}
+.playlist__data {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.playlist__avatar {
+    margin-right: 6px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.playlist__user-name {
+    margin-right: 10px;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+.playlist__counter {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-right: 10px;
+}
+.playlist__followers {
+    font-size: 0.875rem;
+    font-weight: 400; 
+}
+.playlist__play-btn {
+    padding: 10px 35px;
+    background-color: rgba(14,13,18,.5);
+    margin-top: -76px;
+}

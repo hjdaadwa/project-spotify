@@ -1,0 +1,16 @@
+.music-player__play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+}
+.music-player__play-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.music-player__play-btn:active {
+    transform: scale(0.95);
+}

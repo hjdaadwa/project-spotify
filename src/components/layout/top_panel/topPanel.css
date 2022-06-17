@@ -1,0 +1,22 @@
+.top-panel {
+    position: fixed;
+    left: 220px;
+    right: 0;
+    margin-right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: calc(100%-220px);
+    padding: 18px 16px;
+    background-color: var(--bg-panel-o);
+    z-index: 1;
+}
+.top-panel__control {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    padding-right: 10px;
+}
+.top-panel__authorization {
+    padding-right: 25px;
+}

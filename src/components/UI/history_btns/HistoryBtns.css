@@ -1,0 +1,19 @@
+.top-panel__control-btns {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-left: 25px;
+    min-width: 120px;
+}
+.top-panel__control-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+    padding: 3px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--font-white);
+    background-color: #000000;
+    fill: white;
+}

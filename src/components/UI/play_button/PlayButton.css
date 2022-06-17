@@ -1,0 +1,16 @@
+.play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--font-green);
+}
+.play-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.play-button:active {
+    transform: scale(.95);
+}

@@ -1,0 +1,50 @@
+.music-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    height: 90px;
+    grid-area: player;
+    background-color: var(--font-black);
+    border-top: 1px solid #282828;
+}
+.music-player__controller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 600px;
+}
+.music-player__btns {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 1px;
+}
+.music-player__playback-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}
+.music-player__playback-duration,
+.music-player__playback-time {
+    font-size: .825rem;
+    margin: 0px 5px;
+}
+.music-player__right-panel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 300px;
+}
+.music-player__current-tracklist-btn {
+    margin-right: 10px;
+    background: transparent;
+    border: none;
+    fill: var(--font-gray);
+}
+.music-player__current-tracklist-img {
+    display: block;
+}

@@ -1,0 +1,12 @@
+.title_size_small {
+    font-size: 2rem;
+    margin: 10px 0px;
+}
+.title_size_normal {
+    font-size: 3rem;
+    margin: 12px 0px;
+}
+.title_size_large {
+    font-size: 4rem;
+    margin: 12px 0px;
+}
